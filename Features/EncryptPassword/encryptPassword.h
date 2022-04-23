@@ -6,6 +6,11 @@
 #define PROJECT_PASSWORD_MANAGER_SCRIPT_H
 #include <iostream>
 
+/**
+ *
+ * @param Combine; element to encrypt
+ * @return encrypted element
+ */
 std::string hashPassword(std::string const &Combine);
 
 

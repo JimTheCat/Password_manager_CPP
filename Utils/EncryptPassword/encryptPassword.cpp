@@ -25,7 +25,7 @@ std::string hashPassword(std::string const &Combine){
 //            hash.push_back(Letter + key);
 
         hash.push_back((Letter + key) % 128);
-        hash.push_back(rand() % 94 + 33);
+        hash.push_back(rand() % 128);
     }
     return hash;
 }

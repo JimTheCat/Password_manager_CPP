@@ -1,7 +1,7 @@
 #include <iostream>
-//#include "Features/Log in/login.h"
-#include "Features/EncryptPassword/encryptPassword.h"
-#include "Features/DecryptPassword/decryptPassword.h"
+#include "Utils/EncryptPassword/encryptPassword.h"
+#include "Utils/DecryptPassword/decryptPassword.h"
+#include "Utils/Auth/auth.h"
 #include <ctime>
 
 using namespace std;
@@ -12,8 +12,9 @@ int main() {
      */
     srand(time(NULL));
 
-    string test = hashPassword("testCombination");
-    cout << "START" << endl << test << endl << "END" << endl << decryptPassword(test);
+    string test = hashPassword("BardzoTrudneHaslo*2137");
+    cout << "START" << endl << test << endl << "END" << endl << decryptPassword(test) << endl;
 
+    cout << auth::checkPassword("BardzoTrudneHaslo*2137") << endl;
     return 0;
 }

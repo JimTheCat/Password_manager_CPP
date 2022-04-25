@@ -10,6 +10,8 @@ int main() {
     /**
      * @srand for random encryption
      */
+
+    ///TODO: Make srand() dependent by password;
     srand(time(NULL));
 
     string test = hashPassword("BardzoTrudneHaslo*2137");

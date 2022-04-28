@@ -18,7 +18,7 @@ std::string decryptPassword(std::string const &Combine){
 
     for(auto Letter : Combine){
         if(counter % 2 == 0){
-            password.push_back((Letter + key) % 128);
+            password.push_back((Letter + key) % 96 + 32);
         }
         counter++;
     }

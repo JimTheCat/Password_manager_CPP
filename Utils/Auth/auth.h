@@ -7,8 +7,7 @@
 #include <iostream>
 
 
-class auth{
-public:
+struct auth{
     static bool checkPassword(std::string password);
 };
 

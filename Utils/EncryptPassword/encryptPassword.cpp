@@ -12,20 +12,13 @@
 std::string hashPassword(std::string const &Combine){
 
     std::string hash;
-    hash.push_back(rand() % 128);
+    hash.push_back(rand() % 96 + 32);
 
     int key = hash[0];
 
-//    std::cout << key << " " << std::endl;
-
     for (auto Letter : Combine){
-//        if (Letter + key > 126)
-//            hash.push_back(32 + ((Letter + key) - 126));
-//        else
-//            hash.push_back(Letter + key);
-
-        hash.push_back((Letter + key) % 128);
-        hash.push_back(rand() % 128);
+        hash.push_back((Letter + key) % 96 + 32);
+        hash.push_back(rand() % 96 + 32);
     }
     return hash;
 }

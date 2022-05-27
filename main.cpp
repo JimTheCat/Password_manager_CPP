@@ -5,7 +5,8 @@
 #include "Utils/Seed/seed.h"
 #include "Menu/FilePath/filePath.h"
 #include "Utils/FileVectorConverter/converter.h"
-#include <ctime>
+#include "Menu/Design/menu.h"
+#include "Utils/Timestamp/timestamp.h"
 
 using namespace std;
 
@@ -33,27 +34,24 @@ int main() {
 //
 //    cout << result << endl;
 
+
+    cout << timestamp::randomTS() << endl;
     cout << "=-=-=-=END OF TESTS!=-=-=-=" << endl;
 
-    cout << "Witaj w Password Managerze! \nProsze wpisz haslo by odszyfrowac twoje dane!: " << endl;
-    cin >> password;
-    srand(seed::generateSeed(password));
-    cout << "Wpisz sciezke do pliku ktory chcesz odszyfrowac: " << endl;
-    cin >> filePath;
-    vector<vector<string>> vectorTestowy;
-    try {
-        vectorTestowy = converter::fileToVector(filePathRequest(filePath), auth::checkPassword(password));
-    }catch (invalid_argument& e){
-        cerr << e.what() << endl;
-        return -1;
-    }
+//    cout << "Witaj w Password Managerze! \nProsze wpisz haslo by odszyfrowac twoje dane!: " << endl;
+//    cin >> password;
+//    srand(seed::generateSeed(password));
+//    cout << "Wpisz sciezke do pliku ktory chcesz odszyfrowac: " << endl;
+//    cin >> filePath;
+//    vector<vector<string>> vectorTestowy;
+//    try {
+//        vectorTestowy = converter::fileToVector(filePathRequest(filePath), auth::checkPassword(password));
+//        menu::generateMenu(vectorTestowy);
+//    }catch (invalid_argument& e){
+//        cerr << e.what() << endl;
+//        return -1;
+//    }
 
-    for(auto & i : vectorTestowy){
-        for(int j = 0; j < 6; j++){
-            cout << i[j] << " ";
-        }
-        cout << endl;
-    }
 
     return 0;
 }

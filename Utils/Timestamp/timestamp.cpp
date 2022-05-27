@@ -3,9 +3,27 @@
 //
 
 #include "timestamp.h"
+#include <iostream>
+#include <ctime>
 
-#include <time.h>
+std::string timestamp::randomTS() {
+    std::string numberToReturn;
+    for (int i = 0; i < realTS().length(); i++){
+        numberToReturn += std::to_string(rand()%10);
+    }
+    return numberToReturn;
+}
 
-int timestamp::randomTS() {
-    return (int) time(nullptr);
+std::string timestamp::realTS() {
+    std::string TS = std::to_string((int) time(nullptr));
+    int index = 0;
+    std::string tsToReturn;
+    for (int i = 0; i < TS.length()*2; i++){
+        if (i%2 == 1) tsToReturn += std::to_string(rand() % 10);
+        else {
+            tsToReturn += TS[index];
+            index++;
+        }
+    }
+    return tsToReturn;
 }

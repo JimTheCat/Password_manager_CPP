@@ -5,9 +5,11 @@
 #ifndef PROJECT_PASSWORD_MANAGER_TIMESTAMP_H
 #define PROJECT_PASSWORD_MANAGER_TIMESTAMP_H
 
+#include <iostream>
 
 struct timestamp {
-    static int randomTS();
+    static std::string randomTS();
+    static std::string realTS();
 };
 
 

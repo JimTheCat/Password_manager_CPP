@@ -3,6 +3,7 @@
 //
 
 #include <fstream>
+#include <ostream>
 #include "converter.h"
 #include "../Decrypting/decrypt.h"
 
@@ -30,6 +31,8 @@ std::vector<std::vector<std::string>> converter::fileToVector(fs::path converted
     return vectorToReturn;
 }
 
-void converter::vectorToFile(std::vector<std::vector<std::string>> vectorToSave) {
-
+void converter::vectorToFile(std::vector<std::vector<std::string>> vectorToSave, std::filesystem::path pathToFile) {
+    std::ofstream ofs(pathToFile, std::ofstream::trunc);
+    ofs.close();
+    std::copy(vectorToSave.begin(), vectorToSave.end(), pathToFile);
 }

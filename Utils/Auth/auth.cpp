@@ -8,6 +8,6 @@
 
 bool auth::checkPassword(std::string password) {
     ///TODO: Change from static to dynamic checking
-    return password == decrypt("f:9'^0C4g+6.i'~9`2F5#WQXdY#");
+    return password == decrypt("iB:@HCo2m<j3rt!/ZAP:<=v]7^[_@");
 }
 

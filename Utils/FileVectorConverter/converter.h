@@ -14,7 +14,7 @@ namespace fs=std::filesystem;
 class converter {
 public:
     static std::vector<std::vector<std::string>> fileToVector(fs::path convertedPath, bool isGoodPassword);
-    static void vectorToFile(std::vector<std::vector<std::string>> vectorToSave, std::filesystem::path pathToFile);
+    static void vectorToFile(std::vector<std::vector<std::string>> &vectorToSave, std::filesystem::path pathToFile);
 };
 
 

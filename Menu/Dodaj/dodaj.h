@@ -9,7 +9,7 @@
 #include <vector>
 
 struct dodaj {
-    void addPassowrd(std::vector<std::vector<std::string>> vec, bool isGoodPassword);
+    void addPassword(std::vector<std::vector<std::string>> vec, bool isGoodPassowrd);
     void pushingText(std::string textToPush, std::vector<std::string> password);
 };
 

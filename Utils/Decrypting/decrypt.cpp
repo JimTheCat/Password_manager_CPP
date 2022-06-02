@@ -13,11 +13,11 @@ std::string decrypt(const std::string &Combine) {
     std::string password;
     int counter = 1;
 
-    int key = 128 - Combine[0];
+    int key = 122 - Combine[0];
 
     for(auto Letter : Combine){
         if(counter % 2 == 0){
-            password.push_back((Letter + key) % 96 + 32);
+            password.push_back((Letter + key) % 94 + 33);
         }
         counter++;
     }
@@ -33,7 +33,7 @@ std::string wrongDecrypt(std::string const &Combine){
 
     for(auto Letter : Combine){
         if(counter % 2 == 1){
-            password.push_back((Letter + key) % 96 + 32);
+            password.push_back((Letter + key) % 94 + 33);
         }
         counter++;
     }

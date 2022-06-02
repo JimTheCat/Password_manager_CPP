@@ -4,7 +4,7 @@
 
 #include "dodaj.h"
 
-void dodaj::addPassowrd(std::vector<std::vector<std::string>> vec, bool isGoodPassowrd) {
+void dodaj::addPassword(std::vector<std::vector<std::string>> vec, bool isGoodPassowrd) {
     if (!isGoodPassowrd) throw std::invalid_argument("Password is wrong! This option is not available!");
     else {
         std::vector<std::string> passwordToPush;

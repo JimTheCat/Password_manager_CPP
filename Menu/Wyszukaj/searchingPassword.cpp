@@ -1,12 +1,10 @@
 //
-// Created by Jimmy on 27.05.2022.
+// Created by Jimmy on 03.06.2022.
 //
 
-#include "wyszukaj.h"
-#include <iostream>
-#include <vector>
+#include "searchingPassword.h"
 
-void wyszukaj::searchPassword(std::vector<std::vector<std::string>> vec) {
+void searchingPassword::searchPassword(std::vector<std::vector<std::string>> vec) {
     std::string pattern;
     bool passwordFounded = false;
     std::cout << std::string( 50, '\n' );

@@ -7,7 +7,7 @@
     </sourceRoots>
     <libraryRoots>
       <file path="$PROJECT_DIR$/Lib" />
-      <file path="$PROJECT_DIR$/single_include" />
+      <file path="$PROJECT_DIR$/Lib/single_include" />
     </libraryRoots>
   </component>
 </project>

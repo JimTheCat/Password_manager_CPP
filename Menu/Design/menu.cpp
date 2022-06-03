@@ -3,7 +3,7 @@
 //
 
 #include "menu.h"
-#include "../Wyszukaj/wyszukaj.h"
+#include "../Wyszukaj/searchPassword.h"
 #include <iostream>
 
 using std::cout, std::endl;
@@ -30,25 +30,25 @@ void menu::generateMenu(std::vector<std::vector<std::string>> listOfPasswords) {
     std::cin >> optionNumber;
 //    switch (optionNumber) {
 //        case 1:
-//            wyszukaj::searchPassword(listOfPasswords);
+//            searchPassword::searchPassword(listOfPasswords);
 //            break;
 //        case 2:
-//            wyszukaj::searchPassword();
+//            searchPassword::searchPassword();
 //            break;
 //        case 3:
-//            wyszukaj::searchPassword();
+//            searchPassword::searchPassword();
 //            break;
 //        case 4:
-//            wyszukaj::searchPassword();
+//            searchPassword::searchPassword();
 //            break;
 //        case 5:
-//            wyszukaj::searchPassword();
+//            searchPassword::searchPassword();
 //            break;
 //        case 6:
-//            wyszukaj::searchPassword();
+//            searchPassword::searchPassword();
 //            break;
 //        case 7:
-//            wyszukaj::searchPassword();
+//            searchPassword::searchPassword();
 //            break;
 //        default: throw std::errc::invalid_argument("Wrong menu number");
 //    }

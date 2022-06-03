@@ -6,8 +6,10 @@
 #define PROJECT_PASSWORD_MANAGER_ADDCATEGORY_H
 
 
-class addCategory {
+#include <string>
 
+class addCategory {
+    void add(std::string &nameOfCategory);
 };
 
 

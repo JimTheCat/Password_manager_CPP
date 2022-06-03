@@ -13,11 +13,9 @@ fs::path filePathRequest(const std::string& source){
     fs::path filePath(source);
     char answer;
     std::string toMakeCorrectPath = "../";
+    if(!filePath.has_root_name()) filePath = (fs::path)toMakeCorrectPath.append(source);
     if (!exists(filePath)){
-        std::cout << "Podana sciezka pliku nie isnieje! Czy chcesz utworzyć plik? [y/n]: " << std::endl;
-        std::cin >> answer;
-        if (answer != 'y') return "";
-        if (!filePath.has_root_name()) toMakeCorrectPath = toMakeCorrectPath.append(source);
+        std::cout << "Podana sciezka pliku nie isnieje! Tworze nowy plik w podanej lokalizacji!" << std::endl;
         std::ofstream newFile(toMakeCorrectPath);
         newFile.close();
     }

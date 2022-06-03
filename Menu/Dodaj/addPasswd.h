@@ -8,9 +8,10 @@
 
 #include <iostream>
 #include <vector>
+#include "../../Lib/single_include/nlohmann/json.hpp"
 
 struct addPasswd {
-    void addPassword(std::vector<std::vector<std::string>> vec, bool isGoodPassowrd);
+    void addPassword(std::vector<std::vector<std::string>> vec, bool isGoodPassowrd, nlohmann::json j);
     void pushingText(std::string textToPush, std::vector<std::string> password);
 };
 

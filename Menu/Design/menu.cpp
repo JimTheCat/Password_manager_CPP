@@ -3,7 +3,7 @@
 //
 
 #include "menu.h"
-#include "../Wyszukaj/searchPassword.h"
+#include "../Wyszukaj/searchingPassword.h"
 #include <iostream>
 
 using std::cout, std::endl;

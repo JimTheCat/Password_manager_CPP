@@ -2,9 +2,11 @@
 // Created by Jimmy on 27.05.2022.
 //
 
-#include "addPassword.h"
+#include "addPasswd.h"
+#include <vector>
+#include <iostream>
 
-void addPassword::addPassword(std::vector<std::vector<std::string>> vec, bool isGoodPassowrd) {
+void addPasswd::addPassword(std::vector<std::vector<std::string>> vec, bool isGoodPassowrd) {
     if (!isGoodPassowrd) throw std::invalid_argument("Password is wrong! This option is not available!");
     else {
         std::vector<std::string> passwordToPush;
@@ -15,7 +17,7 @@ void addPassword::addPassword(std::vector<std::vector<std::string>> vec, bool is
     }
 }
 
-void addPassword::pushingText(std::string textToPush, std::vector<std::string> password) {
+void addPasswd::pushingText(std::string textToPush, std::vector<std::string> password) {
     std::string separator = " ";
     password.push_back(textToPush);
     password.push_back(separator);

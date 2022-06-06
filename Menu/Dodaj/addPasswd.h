@@ -11,8 +11,9 @@
 #include "../../Lib/single_include/nlohmann/json.hpp"
 
 struct addPasswd {
-    void addPassword(std::vector<std::vector<std::string>> vec, bool isGoodPassowrd, nlohmann::json j);
-    void pushingText(std::string textToPush, std::vector<std::string> password);
+    static void addPassword(std::vector<std::vector<std::string>>& vec, bool isGoodPassword, nlohmann::json j);
+    static std::string generatePassword();
+    static std::string generatedPasswordToReturn(int lengthOfPassword, bool isUpperCase, bool specialLetters);
 };
 
 

@@ -7,9 +7,10 @@
 
 
 #include <string>
+#include "../../Lib/single_include/nlohmann/json.hpp"
 
-class addCategory {
-    void add(std::string &nameOfCategory);
+struct addCategory {
+    static void add();
 };
 
 

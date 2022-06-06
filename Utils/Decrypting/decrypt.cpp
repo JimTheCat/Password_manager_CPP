@@ -23,7 +23,7 @@ std::string decrypt(const std::string &Combine) {
     }
 
     return password;
-};
+}
 
 std::string wrongDecrypt(std::string const &Combine){
     std::string password;
@@ -39,4 +39,4 @@ std::string wrongDecrypt(std::string const &Combine){
     }
 
     return password;
-};
+}

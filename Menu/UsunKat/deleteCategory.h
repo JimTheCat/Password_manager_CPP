@@ -5,9 +5,10 @@
 #ifndef PROJECT_PASSWORD_MANAGER_DELETECATEGORY_H
 #define PROJECT_PASSWORD_MANAGER_DELETECATEGORY_H
 
+#include <iostream>
 
-class deleteCategory {
-
+struct deleteCategory {
+    static void deleteCat();
 };
 
 

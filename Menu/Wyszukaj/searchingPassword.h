@@ -8,8 +8,8 @@
 #include <iostream>
 
 
-class searchingPassword {
-    void searchPassword(std::vector<std::vector<std::string>> vec);
+struct searchingPassword {
+    static void searchPassword(std::vector<std::vector<std::string>> vec);
 };
 
 

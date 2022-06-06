@@ -7,9 +7,11 @@
 
 #include <iostream>
 #include <vector>
+#include "../../Lib/single_include/nlohmann/json.hpp"
 
 struct menu {
-    static void generateMenu(std::vector<std::vector<std::string>> vec);
+    static void generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPassword, nlohmann::json j,
+                             std::filesystem::path path);
 };
 
 

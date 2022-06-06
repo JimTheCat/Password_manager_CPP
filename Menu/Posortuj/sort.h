@@ -6,8 +6,8 @@
 #define PROJECT_PASSWORD_MANAGER_SORT_H
 
 
-class sort {
-
+struct sort {
+    static void sorting();
 };
 
 

@@ -14,9 +14,12 @@ using namespace std;
 using json = nlohmann::json;
 
 int main() {
+    vector<vector<string>> vectorTestowy;
     string filePath;
     string password;
     string fileData;
+    std::filesystem::path pathToFile;
+    char answer = 'n';
     json jd;
     ifstream i(R"(C:\Users\Jimmy\Desktop\PJC\Project_password_manager\categories.json)");
     i >> jd;
@@ -44,37 +47,28 @@ int main() {
 //    result = test.substr(0 , test.find(separator));
 //
 //    cout << result << endl;
-    cin >> password;
-    srand(seed::generateSeed(password));
-    cout << encrypt("hasloDoGoogla123") << endl;
-    cout << encrypt("Google_Account") << endl;
-    cout << encrypt("Internet") << endl;
-    cout << encrypt("www.google.com") << endl;
-    cout << encrypt("-") << endl;
-    cout << timestamp::realTS() << endl;
-//    cout << timestamp::randomTS() << endl;
-    cout << "=-=-=-=END OF TESTS!=-=-=-=" << endl;
-//    cout << encrypt(password) << endl;
-//    cout << "Witaj w Password Managerze! \nProsze wpisz haslo by odszyfrowac twoje dane!: " << endl;
 //    cin >> password;
 //    srand(seed::generateSeed(password));
-    cout << "Wpisz sciezke do pliku ktory chcesz odszyfrowac: " << endl;
-    cin >> filePath;
-    vector<vector<string>> vectorTestowy;
+    cout << "=-=-=-=END OF TESTS!=-=-=-=" << endl;
+//    cout << encrypt(password) << endl;
+    cout << "Witaj w Password Managerze! \nProsze wpisz haslo by odszyfrowac twoje dane!: " << endl;
+    cin >> password;
+    srand(seed::generateSeed(password));
     try {
-        vectorTestowy = converter::fileToVector(filePathRequest(filePath), auth::checkPassword(password));
-        menu::generateMenu(vectorTestowy);
+        while (answer != 't') {
+            cout << "Wpisz sciezke do pliku ktory chcesz odszyfrowac: " << endl;
+            cin >> filePath;
+            pathToFile = filePathRequest(filePath);
+            vectorTestowy = converter::fileToVector(pathToFile, auth::checkPassword(password));
+            menu::generateMenu(vectorTestowy, auth::checkPassword(password), jd, pathToFile);
+            cout << "Czy chcesz zakonczyc dzialanie programu? [t/n]: " << endl;
+            cin >> answer;
+        }
     }catch (invalid_argument& e){
         cerr << e.what() << endl;
         return -1;
     }
-    cout << auth::checkPassword(password) << endl;
-    cout << vectorTestowy [0][0] << endl;
-    cout << vectorTestowy [0][1] << endl;
-    cout << vectorTestowy [0][2] << endl;
-    cout << vectorTestowy [0][3] << endl;
-    cout << vectorTestowy [0][4] << endl;
-    cout << vectorTestowy [0][5] << endl;
+
 
     return 0;
 }

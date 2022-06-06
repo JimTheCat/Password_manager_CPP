@@ -7,6 +7,7 @@
 #include "converter.h"
 #include "../Decrypting/decrypt.h"
 #include "../Timestamp/timestamp.h"
+#include "../Encrypting/encrypt.h"
 
 std::vector<std::vector<std::string>> converter::fileToVector(fs::path convertedPath, bool isGoodPassword) {
     int numberOfColumns = 6;
@@ -16,6 +17,8 @@ std::vector<std::vector<std::string>> converter::fileToVector(fs::path converted
     std::string separator = " ";
     std::string timestamp;
     bool firstLine = true;
+
+    if (convertedPath.empty()) return vectorToReturn;
 
     while (std::getline(readFile, fileData)){
         std::vector<std::string> vectorOfLines;
@@ -35,16 +38,20 @@ std::vector<std::vector<std::string>> converter::fileToVector(fs::path converted
     return vectorToReturn;
 }
 
-void converter::vectorToFile(std::vector<std::vector<std::string>> &vectorToSave, std::filesystem::path pathToFile) {
+void converter::vectorToFile(std::vector<std::vector<std::string>> &vectorToSave, const std::filesystem::path& pathToFile) {
     std::fstream ofs;
 //    std::copy(vectorToSave.begin(), vectorToSave.end(), std::ostream_iterator<std::string>(ofs, " "));
     ofs.open(pathToFile, std::ios_base::out);
 
     for (auto & i : vectorToSave){
-        for (auto & j : i){
-            ofs << j << " ";
+        for (int j = 0; j < 5; j++){
+            ofs << encrypt(i[j]) << " ";
         }
+        i.push_back(timestamp::randomTS());
+        ofs << timestamp::randomTS();
         ofs << "\n";
     }
+
+    vectorToSave[0][6] = timestamp::realTS();
     ofs.close();
 }

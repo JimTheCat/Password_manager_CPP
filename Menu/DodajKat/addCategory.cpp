@@ -3,12 +3,23 @@
 //
 
 #include "addCategory.h"
-#include "../../../Project_password_manager/Lib/single_include/nlohmann/json.hpp"
+#include "../../Utils/Encrypting/encrypt.h"
 #include <fstream>
 
-void addCategory::add(std::string &nameOfCategory) {
-    nlohmann::json jd;
-    std::ifstream i(R"(C:\Users\Jimmy\Desktop\PJC\Project_password_manager\categories.json)");
-    i >> jd;
-    nameOfCategory = jd.dump();
+void addCategory::add() {
+    nlohmann::json j;
+    std::ifstream i("../categories.json");
+    i >> j;
+    i.close();
+
+    std::string nameOfCategory;
+    std::ofstream o("../categories.json");
+
+    std::cout << "Wpisz nazwe kategorii: " << std::endl;
+    std::cin >> nameOfCategory;
+
+    j["categories"].push_back(encrypt(nameOfCategory));
+
+    o << std::setw(4) << j << std::endl;
+    o.close();
 }

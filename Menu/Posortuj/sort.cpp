@@ -3,3 +3,7 @@
 //
 
 #include "sort.h"
+
+void sort::sorting() {
+
+}

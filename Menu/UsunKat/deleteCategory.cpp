@@ -4,6 +4,7 @@
 
 #include "deleteCategory.h"
 #include "../../Lib/single_include/nlohmann/json.hpp"
+#include "../../Utils/Decrypting/decrypt.h"
 #include <fstream>
 
 void deleteCategory::deleteCat() {
@@ -19,7 +20,7 @@ void deleteCategory::deleteCat() {
     std::cin >> nameOfCategory;
 
     for (auto i : j["categories"]) {
-        if (i.get<std::string>() == nameOfCategory) {
+        if (decrypt(i.get<std::string>()) == nameOfCategory) {
             j["categories"].erase(index);
             break;
         } else index++;

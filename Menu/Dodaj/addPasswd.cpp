@@ -5,7 +5,9 @@
 #include "addPasswd.h"
 #include <vector>
 #include <iostream>
-#include "../../Lib/single_include/nlohmann/json.hpp"
+#include <fstream>
+#include "../../Utils/Decrypting/decrypt.h"
+#include "../../Utils/StringConverter/strconverter.h"
 
 void addPasswd::addPassword(std::vector<std::vector<std::string>> &vec, bool isGoodPassword, nlohmann::json j) {
     if (!isGoodPassword) throw std::invalid_argument("Password is wrong! This option is not available!");
@@ -20,16 +22,18 @@ void addPasswd::addPassword(std::vector<std::vector<std::string>> &vec, bool isG
         else if (answer == 'n') {
             std::cout << "Podaj haslo: " << std::endl;
             std::cin >> textToPush;
+            addPasswd::checkingStrengthOfPassword(textToPush);
         }
         passwordToPush.push_back(textToPush);
         std::cout << "Podaj nazwe: " << std::endl;
         std::cin >> textToPush;
-        passwordToPush.push_back(textToPush);
+        passwordToPush.push_back(strconverter::replaceSpaceToUnderscore(textToPush));
 
         std::cout << "Podaj kategorie: " << std::endl;
+        addPasswd::showCategories();
         std::cin >> textToPush;
         for (auto i: j["categories"]) {
-            if (!i.get<std::string>().compare(textToPush)) {
+            if (!decrypt(i.get<std::string>()).compare(textToPush)) {
                 passwordToPush.push_back(textToPush);
                 didFoundCategory = true;
             }
@@ -38,12 +42,12 @@ void addPasswd::addPassword(std::vector<std::vector<std::string>> &vec, bool isG
         std::cout << "Podaj Strone WWW (opcjonalne): " << std::endl;
         std::cin >> textToPush;
         if (textToPush.empty() || !textToPush.compare("\n")) passwordToPush.emplace_back("-");
-        else passwordToPush.push_back(textToPush);
+        else passwordToPush.push_back(strconverter::replaceSpaceToUnderscore(textToPush));
 
         std::cout << "Podaj Login (opcjonalne): " << std::endl;
         std::cin >> textToPush;
         if (textToPush.empty()) passwordToPush.emplace_back("-");
-        else passwordToPush.push_back(textToPush);
+        else passwordToPush.push_back(strconverter::replaceSpaceToUnderscore(textToPush));
 
         vec.push_back(passwordToPush);
     }
@@ -99,5 +103,29 @@ std::string addPasswd::generatedPasswordToReturn(int lengthOfPassword, bool isUp
         }
     }
 
+    std::cout << "Twoje haslo to: " << generatedPasswordToReturn << std::endl;
     return generatedPasswordToReturn;
+}
+
+void addPasswd::showCategories(){
+    nlohmann::json j;
+    std::ifstream i("../categories.json");
+    i >> j;
+
+    std::cout << "Oto lista dostepnych kategorii: " << std::endl;
+    for (const auto& k : j["categories"]){
+        std::cout << decrypt(k.get<std::string>()) << std::endl;
+    }
+}
+
+void addPasswd::checkingStrengthOfPassword(const std::string& passwordToCheck){
+
+    const static std::string specialLetters = "!@#$%^&*()";
+
+    bool containSpecialLetters = std::any_of(passwordToCheck.begin(), passwordToCheck.end(), [](auto arg) -> auto {return specialLetters.find(arg) != std::string::npos;});
+    bool containBigLetters = std::any_of(passwordToCheck.begin(), passwordToCheck.end(), [](auto arg) -> auto {return std::isupper(arg);});
+
+    if (containBigLetters && containSpecialLetters) std::cout << "Twoje haslo jest silne!" << std::endl;
+    else if (containBigLetters || containSpecialLetters) std::cout << "Twoje haslo jest umiarkowanie silne" << std::endl;
+    else std::cout << "Twoje haslo jest slabe" << std::endl;
 }

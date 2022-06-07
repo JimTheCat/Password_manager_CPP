@@ -6,8 +6,12 @@
 #include "../Decrypting/decrypt.h"
 #include <iostream>
 
-bool auth::checkPassword(std::string password) {
-    ///TODO: Change from static to dynamic checking
+/**
+ * Checking the password if it's correct.
+ * @param password - password taken from user
+ * @return true if password is correct, otherwise false
+ */
+bool auth::checkPassword(const std::string& password) {
     return password == decrypt("iB:@HCo2m<j3rt!/ZAP:<=v]7^[_@");
 }
 

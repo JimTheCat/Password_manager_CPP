@@ -14,8 +14,9 @@
 
 using std::cout, std::endl;
 
+
 void menu::generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPassword, nlohmann::json j,
-                        std::filesystem::path path) {
+                        const std::filesystem::path& path) {
     int optionNumber = -1;
 
     while (optionNumber != 0){

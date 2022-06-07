@@ -8,7 +8,7 @@
 
 
 struct auth{
-    static bool checkPassword(std::string password);
+    static bool checkPassword(const std::string& password);
 };
 
 

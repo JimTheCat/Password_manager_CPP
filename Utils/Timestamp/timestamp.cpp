@@ -6,6 +6,10 @@
 #include <iostream>
 #include <ctime>
 
+/**
+ * Generate decrypted fake timestamp
+ * @return decrypted timestamp
+ */
 std::string timestamp::randomTS() {
     std::string numberToReturn;
     for (int i = 0; i < realTS().length(); i++){
@@ -14,6 +18,10 @@ std::string timestamp::randomTS() {
     return numberToReturn;
 }
 
+/**
+ * Generate decrypted timestamp
+ * @return decrypted timestamp
+ */
 std::string timestamp::realTS() {
     std::string TS = std::to_string((int) time(nullptr));
     int index = 0;

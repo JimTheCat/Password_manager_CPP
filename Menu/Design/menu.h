@@ -11,7 +11,7 @@
 
 struct menu {
     static void generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPassword, nlohmann::json j,
-                             std::filesystem::path path);
+                             const std::filesystem::path& path);
 };
 
 

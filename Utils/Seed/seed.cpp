@@ -3,13 +3,12 @@
 //
 
 #include "seed.h"
+
 /**
  * Generating seed
- *
- * @param Password
- * @return seed
+ * @param Password - password taken from user
+ * @return Seed for srand usage
  */
-
 int seed::generateSeed(std::string &Password) {
     int result = 0;
     for (char index : Password){

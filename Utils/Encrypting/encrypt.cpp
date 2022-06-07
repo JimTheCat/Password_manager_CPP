@@ -5,9 +5,9 @@
 #include "encrypt.h"
 
 /**
- *
- * @param Combine; element to encrypt
- * @return encrypted element
+ * Encrypting text
+ * @param Combine - string to ecrypt
+ * @return encrypted string
  */
 std::string encrypt(std::string const &Combine){
 

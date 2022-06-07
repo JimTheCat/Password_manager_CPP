@@ -10,10 +10,14 @@
 #include <vector>
 #include "../../Lib/single_include/nlohmann/json.hpp"
 
-struct addPasswd {
+class addPasswd {
+public:
     static void addPassword(std::vector<std::vector<std::string>>& vec, bool isGoodPassword, nlohmann::json j);
+private:
     static std::string generatePassword();
     static std::string generatedPasswordToReturn(int lengthOfPassword, bool isUpperCase, bool specialLetters);
+    static void showCategories();
+    static void checkingStrengthOfPassword(const std::string &passwordToCheck);
 };
 
 

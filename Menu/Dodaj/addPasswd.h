@@ -18,6 +18,7 @@ private:
     static std::string generatedPasswordToReturn(int lengthOfPassword, bool isUpperCase, bool specialLetters);
     static void showCategories();
     static void checkingStrengthOfPassword(const std::string &passwordToCheck);
+    static bool checkingUniqueOfName(const std::string &nameToCheck, std::vector<std::vector<std::string>> &vec);
 };
 
 

@@ -30,7 +30,6 @@ int main() {
      */
 //    string testaa = encrypt("Ziemniaki");
 //    string test2 = encrypt("TrudneBardzoHaslo*2137");
-//
 //    cout << "START" << endl << testaa << endl << "END" << endl << decrypt(testaa) << endl;
 //    cout << "START" << endl << testaa << endl << "END" << endl << wrongDecrypt(testaa) << endl;
 //    cout << "START" << endl << test2 << endl << "END" << endl << decrypt(test2) << endl;
@@ -60,6 +59,8 @@ int main() {
             cin >> filePath;
             pathToFile = filePathRequest(filePath);
             vectorTestowy = converter::fileToVector(pathToFile, auth::checkPassword(password));
+            if (vectorTestowy.empty()) cout << "Timestamp bedzie przydzielony gdy dodasz haslo" << endl;
+            else timestamp::decryptTS(vectorTestowy);
             menu::generateMenu(vectorTestowy, auth::checkPassword(password), jd, pathToFile);
             cout << "Czy chcesz zakonczyc dzialanie programu? [t/n]: " << endl;
             cin >> answer;

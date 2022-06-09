@@ -62,7 +62,7 @@ void menu::generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPa
                 addCategory::add();
                 break;
             case 7:
-                deleteCategory::deleteCat();
+                deleteCategory::deleteCat(vec);
                 break;
             case 0:
                 cout << "Bye bye! \nZapisuje zmiany do pliku!" << endl;

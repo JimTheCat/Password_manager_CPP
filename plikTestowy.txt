@@ -8,3 +8,4 @@
 .hasło nazwa kategoria ?Strona_WWW ?Login Timestamp_(random)
 .hasło nazwa kategoria ?Strona_WWW ?Login Timestamp_(random)
 .hasło nazwa kategoria ?Strona_WWW ?Login Timestamp_(random)
+   0     1       2          3         4           5

@@ -4,7 +4,6 @@
 
 #include "addCategory.h"
 #include "../../Utils/Encrypting/encrypt.h"
-#include "../../Utils/StringConverter/strconverter.h"
 #include <fstream>
 
 void addCategory::add() {
@@ -19,7 +18,7 @@ void addCategory::add() {
     std::cout << "Wpisz nazwe kategorii: " << std::endl;
     std::cin >> nameOfCategory;
 
-    j["categories"].push_back(encrypt(strconverter::replaceSpaceToUnderscore(nameOfCategory)));
+    j["categories"].push_back(encrypt(nameOfCategory));
 
     o << std::setw(4) << j << std::endl;
     o.close();

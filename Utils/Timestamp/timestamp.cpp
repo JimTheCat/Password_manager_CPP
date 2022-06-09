@@ -5,6 +5,8 @@
 #include "timestamp.h"
 #include <iostream>
 #include <ctime>
+#include <vector>
+#include <zconf.h>
 
 /**
  * Generate decrypted fake timestamp
@@ -34,4 +36,13 @@ std::string timestamp::realTS() {
         }
     }
     return tsToReturn;
+}
+
+void timestamp::decryptTS(std::vector<std::vector<std::string>> vec){
+    std::string result;
+    for (int i = 0; i < realTS().size(); i++) {
+        if (i % 2 == 0) result += vec[0][5][i];
+    }
+    std::cout << "Timestamp: " << result << std::endl;
+    sleep(1);
 }

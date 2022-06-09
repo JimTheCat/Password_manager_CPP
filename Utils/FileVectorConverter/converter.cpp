@@ -51,18 +51,17 @@ std::vector<std::vector<std::string>> converter::fileToVector(fs::path converted
  */
 void converter::vectorToFile(std::vector<std::vector<std::string>> &vectorToSave, const std::filesystem::path& pathToFile) {
     std::fstream ofs;
-    bool firstLine = true;
 
     ofs.open(pathToFile, std::ios_base::out);
-
+    int index = 0;
     for (auto & i : vectorToSave){
-        for (int j = 0; j < i.at(0).size() - 1; j++){
+        for (int j = 0; j < (vectorToSave.at(index).size() == 6 ? vectorToSave.at(index).size() - 1 : vectorToSave.at(index).size()); j++){
             ofs << encrypt(i[j]) << " ";
         }
-        firstLine ? i.push_back(timestamp::realTS()) : i.push_back(timestamp::randomTS());
-        ofs << i[i.at(0).size() - 1];
+        if (index == 0) ofs << timestamp::realTS();
+        else ofs << timestamp::randomTS();
         ofs << "\n";
-        firstLine = false;
+        index++;
     }
 
     ofs.close();

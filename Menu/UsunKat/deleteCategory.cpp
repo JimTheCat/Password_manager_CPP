@@ -3,11 +3,11 @@
 //
 
 #include "deleteCategory.h"
-#include "../../Lib/single_include/nlohmann/json.hpp"
 #include "../../Utils/Decrypting/decrypt.h"
 #include <fstream>
+#include <unistd.h>
 
-void deleteCategory::deleteCat() {
+void deleteCategory::deleteCat(std::vector<std::vector<std::string>>& vec) {
 
     std::string nameOfCategory;
     int index = 0;
@@ -16,11 +16,14 @@ void deleteCategory::deleteCat() {
     i >> j;
     i.close();
 
-    std::cout << "Wpisz nazwe kategorii ktora chcesz usunac: " << std::endl;
+    std::cout
+            << "Wpisz nazwe kategorii ktora chcesz usunac\n!UWAGA!\nUsuniecie kategorii wiaze sie z usunieciem wszystkich hasel wraz z wpisana kategoria: "
+            << std::endl;
     std::cin >> nameOfCategory;
 
-    for (auto i : j["categories"]) {
+    for (auto i: j["categories"]) {
         if (decrypt(i.get<std::string>()) == nameOfCategory) {
+            deletePasswordsContainCurrentCategory(nameOfCategory, vec);
             j["categories"].erase(index);
             break;
         } else index++;
@@ -31,4 +34,19 @@ void deleteCategory::deleteCat() {
     o.close();
 
     std::cout << "Kategoria " << nameOfCategory << " zostala usunieta!" << std::endl;
+
+    sleep(2);
+}
+
+void deleteCategory::deletePasswordsContainCurrentCategory(const std::string& nameOfCategory,
+                                                           std::vector<std::vector<std::string>>& vec) {
+    std::vector<int> vecOfIndex;
+    for (int i = 0; i < vec.size(); i++){
+        if (nameOfCategory == vec[i][2]) vecOfIndex.push_back(i);
+    }
+    for (int i = vecOfIndex.size() - 1; i >= 0; i--) {
+        vec.erase(vec.begin() + vecOfIndex[i]);
+    }
+    std::cout << "Hasla zawierajace kategorie " << nameOfCategory << " zostaly usuniete!" << std::endl;
+    sleep(2);
 }

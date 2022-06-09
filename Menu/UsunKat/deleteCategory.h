@@ -6,9 +6,14 @@
 #define PROJECT_PASSWORD_MANAGER_DELETECATEGORY_H
 
 #include <iostream>
+#include "../../Lib/single_include/nlohmann/json.hpp"
 
-struct deleteCategory {
-    static void deleteCat();
+class deleteCategory {
+public:
+    static void deleteCat(std::vector<std::vector<std::string>>& vec);
+private:
+    static void deletePasswordsContainCurrentCategory(const std::string& nameOfCategory, std::vector<std::vector<std::string>>& vec);
+
 };
 
 

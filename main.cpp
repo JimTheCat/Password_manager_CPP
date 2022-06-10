@@ -1,18 +1,18 @@
 #include <iostream>
 #include <fstream>
-#include "Utils/Encrypting/encrypt.h"
-#include "Utils/Decrypting/decrypt.h"
 #include "Utils/Auth/auth.h"
 #include "Utils/Seed/seed.h"
 #include "Menu/FilePath/filePath.h"
 #include "Utils/FileVectorConverter/converter.h"
 #include "Menu/Design/menu.h"
 #include "Utils/Timestamp/timestamp.h"
-#include "Lib/single_include/nlohmann/json.hpp"
 
-using namespace std;
-using json = nlohmann::json;
+using std::cout, std::endl, std::string, std::vector;
 
+/**
+ * Main function. There is the origin of the program.
+ * @return exit of program without errors
+ */
 int main() {
     vector<vector<string>> vectorTestowy;
     string filePath;
@@ -20,8 +20,9 @@ int main() {
     string fileData;
     std::filesystem::path pathToFile;
     char answer = 'n';
-    json jd;
-    ifstream i(R"(C:\Users\Jimmy\Desktop\PJC\Project_password_manager\categories.json)");
+    char endAnswer = 'n';
+    nlohmann::json jd;
+    std::ifstream i(R"(..\categories.json)");
     i >> jd;
     cout << jd["categories"][0].get<string>() << endl;
     i.close();
@@ -50,26 +51,28 @@ int main() {
 //    srand(seed::generateSeed(password));
     cout << "=-=-=-=END OF TESTS!=-=-=-=" << endl;
 //    cout << encrypt(password) << endl;
-    cout << "Witaj w Password Managerze! \nProsze wpisz haslo by odszyfrowac twoje dane!: " << endl;
-    cin >> password;
-    srand(seed::generateSeed(password));
-    try {
-        while (answer != 't') {
-            cout << "Wpisz sciezke do pliku ktory chcesz odszyfrowac: " << endl;
-            cin >> filePath;
-            pathToFile = filePathRequest(filePath);
-            vectorTestowy = converter::fileToVector(pathToFile, auth::checkPassword(password));
-            if (vectorTestowy.empty()) cout << "Timestamp bedzie przydzielony gdy dodasz haslo" << endl;
-            else timestamp::decryptTS(vectorTestowy);
-            menu::generateMenu(vectorTestowy, auth::checkPassword(password), jd, pathToFile);
-            cout << "Czy chcesz zakonczyc dzialanie programu? [t/n]: " << endl;
-            cin >> answer;
+    while (endAnswer != 't') {
+        cout << "Witaj w Password Managerze! \nProsze wpisz haslo by odszyfrowac twoje dane!: " << endl;
+        std::cin >> password;
+        srand(seed::generateSeed(password));
+        try {
+            while (answer != 't') {
+                cout << "Wpisz sciezke do pliku ktory chcesz odszyfrowac: " << endl;
+                std::cin >> filePath;
+                pathToFile = filePathRequest(filePath);
+                vectorTestowy = converter::fileToVector(pathToFile, auth::checkPassword(password));
+                if (vectorTestowy.empty()) cout << "Timestamp bedzie przydzielony gdy dodasz haslo" << endl;
+                else timestamp::decryptTS(vectorTestowy);
+                menu::generateMenu(vectorTestowy, auth::checkPassword(password), jd, pathToFile);
+                cout << "Czy chcesz zakonczyc dzialanie programu na tym pliku? [t/n]: " << endl;
+                std::cin >> answer;
+            }
+        } catch (std::invalid_argument &e) {
+            std::cerr << e.what() << endl;
+            return -1;
         }
-    }catch (invalid_argument& e){
-        cerr << e.what() << endl;
-        return -1;
+        cout << "Czy chcesz zakonczyc dzialanie programu? [t/n]: " << endl;
+        std::cin >> endAnswer;
     }
-
-
     return 0;
 }

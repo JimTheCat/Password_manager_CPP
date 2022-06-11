@@ -67,7 +67,7 @@ void menu::generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPa
             case 0:
                 cout << "Bye bye! \nZapisuje zmiany do pliku!" << endl;
                 break;
-            default: throw std::invalid_argument("generateMenu(): Wrong menu number");
+            default: throw std::invalid_argument("void generateMenu(): Wrong menu number");
         }
         converter::vectorToFile(vec, path);
     }

@@ -9,11 +9,13 @@
 #include <iostream>
 #include <vector>
 #include "../../Lib/single_include/nlohmann/json.hpp"
+#include "../Edytuj/edit.h"
 
 class addPasswd {
 public:
     static void addPassword(std::vector<std::vector<std::string>>& vec, bool isGoodPassword, nlohmann::json j);
-private:
+    friend void edit::changingValues(std::vector<std::vector<std::string>> &vec, const int& index);
+protected:
     static std::string generatePassword();
     static std::string generatedPasswordToReturn(int lengthOfPassword, bool isUpperCase, bool specialLetters);
     static void showCategories();

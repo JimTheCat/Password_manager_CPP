@@ -56,7 +56,7 @@ void menu::generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPa
                 searchingPassword::searchPassword(vec);
                 break;
             case 5:
-                deletePasswd::deletePassword();
+                deletePasswd::deletePassword(vec);
                 break;
             case 6:
                 addCategory::add();

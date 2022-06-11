@@ -9,7 +9,7 @@
 
 
 struct searchingPassword {
-    static void searchPassword(std::vector<std::vector<std::string>> vec);
+    static void searchPassword(std::vector<std::vector<std::string>> &vec);
 };
 
 

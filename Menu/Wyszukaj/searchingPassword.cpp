@@ -4,7 +4,7 @@
 
 #include "searchingPassword.h"
 
-void searchingPassword::searchPassword(std::vector<std::vector<std::string>> vec) {
+void searchingPassword::searchPassword(std::vector<std::vector<std::string>> &vec) {
     std::string pattern;
     bool passwordFounded = false;
     std::cout << std::string( 50, '\n' );

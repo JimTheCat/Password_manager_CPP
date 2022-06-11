@@ -46,6 +46,7 @@ void edit::changingValues(std::vector<std::vector<std::string>> &vec, const int&
                 }
                 addPasswd::checkingStrengthOfPassword(textToChange);
                 vec[index][0] = textToChange;
+                break;
             }
             case '2':{
                 bool isNameUnique = false;
@@ -56,6 +57,7 @@ void edit::changingValues(std::vector<std::vector<std::string>> &vec, const int&
                     if (!isNameUnique) std::cout << "Nazwa juz wystapila w innym hasle! Wprowadz inna nazwe: " << std::endl;
                 }
                 vec[index][1] = textToChange;
+                break;
             }
             case '3':{
                 // strona www
@@ -63,6 +65,7 @@ void edit::changingValues(std::vector<std::vector<std::string>> &vec, const int&
                 std::cin >> textToChange;
 
                 vec[index][3] = textToChange;
+                break;
             }
             case '4':{
                 // login
@@ -70,6 +73,7 @@ void edit::changingValues(std::vector<std::vector<std::string>> &vec, const int&
                 std::cin >> textToChange;
 
                 vec[index][4] = textToChange;
+                break;
             }
             default: std::cerr << "void changingValues(): Wybrano niepoprawna opcje!" << std::endl;
         }

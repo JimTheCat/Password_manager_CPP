@@ -4,10 +4,11 @@
 
 #ifndef PROJECT_PASSWORD_MANAGER_DELETEPASSWD_H
 #define PROJECT_PASSWORD_MANAGER_DELETEPASSWD_H
-
+#include <iostream>
+#include <vector>
 
 struct deletePasswd {
-    static void deletePassword();
+    static void deletePassword(std::vector<std::vector<std::string>> &vec);
 };
 
 

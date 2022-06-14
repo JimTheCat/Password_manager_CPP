@@ -9,7 +9,7 @@
 #include "../../Utils/Decrypting/decrypt.h"
 
 void addPasswd::addPassword(std::vector<std::vector<std::string>> &vec, bool isGoodPassword, nlohmann::json j) {
-    if (!isGoodPassword) throw std::invalid_argument("Password is wrong! This option is not available!");
+    if (!isGoodPassword) std::cerr << "Password is wrong! This option is not available!" << std::endl;
     else {
         char answer;
         std::string textToPush;

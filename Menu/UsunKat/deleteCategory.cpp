@@ -22,8 +22,8 @@ void deleteCategory::deleteCat(std::vector<std::vector<std::string>> &vec, bool 
                 << std::endl;
         std::cin >> nameOfCategory;
 
-        for (auto i: j["categories"]) {
-            if (decrypt(i.get<std::string>()) == nameOfCategory) {
+        for (const auto& k: j["categories"]) {
+            if (decrypt(k.get<std::string>()) == nameOfCategory) {
                 deletePasswordsContainCurrentCategory(nameOfCategory, vec);
                 j["categories"].erase(index);
                 break;

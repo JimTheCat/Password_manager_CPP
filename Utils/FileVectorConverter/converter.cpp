@@ -51,7 +51,6 @@ std::vector<std::vector<std::string>> converter::fileToVector(fs::path converted
  */
 void converter::vectorToFile(std::vector<std::vector<std::string>> &vectorToSave, const std::filesystem::path& pathToFile) {
     std::fstream ofs;
-
     ofs.open(pathToFile, std::ios_base::out);
     int index = 0;
     std::string timestampToPush;

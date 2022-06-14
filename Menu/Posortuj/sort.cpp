@@ -32,6 +32,7 @@ void sort::sorting(std::vector<std::vector<std::string>> &vec, bool isGoodPasswo
                               return a[parameter] < b[parameter];
                           });
                 std::cout << "Sortowanie po parametrze przeszlo pomyslnie!" << std::endl;
+                break;
             }
             case 2: {
                 int firstParameter;

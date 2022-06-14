@@ -10,8 +10,6 @@
 class sort {
 public:
     static void sorting(std::vector<std::vector<std::string>> &vec, bool b);
-protected:
-    static bool compareByFirstAndSecondParameter(const int firstIndex, const int secondIndex, std::vector<std::vector<std::string>>& vec);
 };
 
 

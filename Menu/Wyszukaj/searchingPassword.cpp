@@ -8,7 +8,6 @@
 
 void searchingPassword::searchPassword(std::vector<std::vector<std::string>> &vec) {
     std::string pattern;
-    bool passwordFounded = false;
     int answer = 0;
 
     std::cout << "Co dokladnie chcesz zrobic?: " << std::endl;

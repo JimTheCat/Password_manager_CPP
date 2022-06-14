@@ -4,10 +4,14 @@
 
 #ifndef PROJECT_PASSWORD_MANAGER_SORT_H
 #define PROJECT_PASSWORD_MANAGER_SORT_H
+#include <iostream>
+#include <vector>
 
-
-struct sort {
-    static void sorting();
+class sort {
+public:
+    static void sorting(std::vector<std::vector<std::string>>& vec);
+protected:
+    static bool compareByFirstAndSecondParameter(const int firstIndex, const int secondIndex, std::vector<std::vector<std::string>>& vec);
 };
 
 

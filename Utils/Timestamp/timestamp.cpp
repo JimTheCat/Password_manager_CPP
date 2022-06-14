@@ -4,7 +4,7 @@
 
 #include "timestamp.h"
 #include <iostream>
-#include <ctime>
+#include <time.h>
 #include <vector>
 #include <zconf.h>
 
@@ -39,10 +39,16 @@ std::string timestamp::realTS() {
 }
 
 void timestamp::decryptTS(std::vector<std::vector<std::string>> vec){
+    struct tm * ptm;
+    std::string timeStamp;
     std::string result;
+    result.resize(40);
     for (int i = 0; i < realTS().size(); i++) {
-        if (i % 2 == 0) result += vec[0][5][i];
+        if (i % 2 == 0) timeStamp += vec[0][5][i];
     }
-    std::cout << "Timestamp: " << result << std::endl;
+    time_t time1 = std::stoi(timeStamp);
+    ptm = localtime(&time1);
+    strftime(&result[0], 40, "Ostatni timestamp: %x %X", ptm);
+    std::cout << result << std::endl;
     sleep(1);
 }

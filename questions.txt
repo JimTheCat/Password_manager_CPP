@@ -1,7 +1,0 @@
-Czy kod musi dekryptować wszystko jednym wcześniej wyznaczonym hasłem? czy każde hasło w pliku ma byc kodowane innym oddzielnym hasłem.?
-
-Czy "taki" rodzaj szyfrowania wystarczy czy powinien być jeszcze bardziej trudniejszy?
-
-Czy implementacja seedowania jest konieczna?
-
-Podział plikowy.. oraz czy switch tutaj jest wskazany do budowy menu.

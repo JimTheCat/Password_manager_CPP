@@ -15,7 +15,7 @@
 using std::cout, std::endl;
 
 
-void menu::generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPassword, nlohmann::json j,
+void menu::generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPassword, const nlohmann::json& j,
                         const std::filesystem::path& path) {
     int optionNumber = -1;
 
@@ -47,22 +47,22 @@ void menu::generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPa
                 searchingPassword::searchPassword(vec);
                 break;
             case 2:
-                sort::sorting(vec);
+                sort::sorting(vec, isGoodPassword);
                 break;
             case 3:
                 addPasswd::addPassword(vec, isGoodPassword, j);
                 break;
             case 4:
-                edit::editPassword(vec);
+                edit::editPassword(vec, isGoodPassword);
                 break;
             case 5:
-                deletePasswd::deletePassword(vec);
+                deletePasswd::deletePassword(vec, isGoodPassword);
                 break;
             case 6:
-                addCategory::add();
+                addCategory::add(isGoodPassword);
                 break;
             case 7:
-                deleteCategory::deleteCat(vec);
+                deleteCategory::deleteCat(vec, isGoodPassword);
                 break;
             case 0:
                 cout << "Bye bye! \nZapisuje zmiany do pliku!" << endl;

@@ -7,8 +7,9 @@
 #include <iostream>
 #include <vector>
 
-struct deletePasswd {
-    static void deletePassword(std::vector<std::vector<std::string>> &vec);
+class deletePasswd {
+public:
+    static void deletePassword(std::vector<std::vector<std::string>> &vec, bool isGoodPassword);
 };
 
 

@@ -10,7 +10,7 @@
 #include "../../Lib/single_include/nlohmann/json.hpp"
 
 struct menu {
-    static void generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPassword, nlohmann::json j,
+    static void generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPassword, const nlohmann::json& j,
                              const std::filesystem::path& path);
 };
 

@@ -10,7 +10,7 @@
 #include "../../Lib/single_include/nlohmann/json.hpp"
 
 struct addCategory {
-    static void add();
+    static void add(bool b);
 };
 
 

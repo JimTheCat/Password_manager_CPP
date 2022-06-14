@@ -6,23 +6,26 @@
 #include "../Dodaj/addPasswd.h"
 
 
-void edit::editPassword(std::vector<std::vector<std::string>> &vec) {
-    std::string nameOfPassword;
-    int index = 0;
-    bool passwordFounded = false;
+void edit::editPassword(std::vector<std::vector<std::string>> &vec, bool isGoodPassword) {
+    if (!isGoodPassword) std::cerr << "void editPassword(): Blad! Opcja niedostepna przez niepoprawne haslo do programu" << std::endl;
+    else {
+        std::string nameOfPassword;
+        int index = 0;
+        bool passwordFounded = false;
 
-    std::cout << "Podaj nazwe hasla ktore chcesz edytowac: " << std::endl;
-    std::cin >> nameOfPassword;
+        std::cout << "Podaj nazwe hasla ktore chcesz edytowac: " << std::endl;
+        std::cin >> nameOfPassword;
 
-    for (auto i : vec){
-        if (i[1] == nameOfPassword) {
-            passwordFounded = true;
-            break;
+        for (auto i: vec) {
+            if (i[1] == nameOfPassword) {
+                passwordFounded = true;
+                break;
+            }
+            index++;
         }
-        index++;
+        if (passwordFounded) edit::changingValues(vec, index);
+        else std::cerr << "void editPassword(): Nie znaleziono takiego hasla!" << std::endl;
     }
-    if(passwordFounded) edit::changingValues(vec, index);
-    else std::cerr << "void editPassword(): Nie znaleziono takiego hasla!" << std::endl;
 }
 
 void edit::changingValues(std::vector<std::vector<std::string>> &vec, const int& index){

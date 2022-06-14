@@ -12,7 +12,6 @@ namespace fs=std::filesystem;
 fs::path filePathRequest(const std::string& source){
     fs::path filePath(source);
     std::string toMakeCorrectPath = "../";
-    char answer;
     if (filePath.extension() != ".txt") throw std::invalid_argument("Err! File have wrong extension! Check if this file is .txt");
     if(!filePath.has_root_name()) filePath = (fs::path) toMakeCorrectPath.append(source);
     if (!exists(filePath)){

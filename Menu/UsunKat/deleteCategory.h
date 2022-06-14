@@ -10,7 +10,7 @@
 
 class deleteCategory {
 public:
-    static void deleteCat(std::vector<std::vector<std::string>>& vec);
+    static void deleteCat(std::vector<std::vector<std::string>> &vec, bool isGoodPassword);
 private:
     static void deletePasswordsContainCurrentCategory(const std::string& nameOfCategory, std::vector<std::vector<std::string>>& vec);
 

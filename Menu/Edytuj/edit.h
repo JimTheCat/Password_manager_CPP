@@ -9,7 +9,7 @@
 
 class edit {
 public:
-    static void editPassword(std::vector<std::vector<std::string>> &vec);
+    static void editPassword(std::vector<std::vector<std::string>> &vec, bool isGoodPassword);
     static void changingValues(std::vector<std::vector<std::string>> &vec, const int &index);
 };
 

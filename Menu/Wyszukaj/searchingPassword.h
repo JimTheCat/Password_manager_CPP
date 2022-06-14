@@ -13,8 +13,7 @@ public:
     static void searchPassword(std::vector<std::vector<std::string>> &vec);
 protected:
     static void showAllPasswords(std::vector<std::vector<std::string>> &vec);
-
-    void showCurrentPasswords(std::vector<std::vector<std::string>> vec);
+    static void showCurrentPasswords(std::vector<std::vector<std::string>>& vec);
 };
 
 

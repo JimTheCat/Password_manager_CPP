@@ -54,14 +54,17 @@ void converter::vectorToFile(std::vector<std::vector<std::string>> &vectorToSave
 
     ofs.open(pathToFile, std::ios_base::out);
     int index = 0;
+    std::string timestampToPush;
     for (auto & i : vectorToSave){
         for (int j = 0; j < (vectorToSave.at(index).size() == 6 ? vectorToSave.at(index).size() - 1 : vectorToSave.at(index).size()); j++){
             ofs << encrypt(i[j]) << " ";
         }
-        if (index == 0) ofs << timestamp::realTS();
-        else ofs << timestamp::randomTS();
+        if (index == 0) timestampToPush = timestamp::realTS();
+        else timestampToPush = timestamp::randomTS();
+        ofs << timestampToPush;
         ofs << "\n";
         index++;
+        if(i.size() == 5) i.push_back(timestampToPush);
     }
 
     ofs.close();

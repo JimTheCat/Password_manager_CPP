@@ -47,13 +47,13 @@ void menu::generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPa
                 searchingPassword::searchPassword(vec);
                 break;
             case 2:
-                sort::sorting();
+                sort::sorting(vec);
                 break;
             case 3:
                 addPasswd::addPassword(vec, isGoodPassword, j);
                 break;
             case 4:
-                searchingPassword::searchPassword(vec);
+                edit::editPassword(vec);
                 break;
             case 5:
                 deletePasswd::deletePassword(vec);

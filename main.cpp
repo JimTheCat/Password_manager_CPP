@@ -18,9 +18,8 @@ int main() {
     string filePath;
     string password;
     string fileData;
-    std::filesystem::path pathToFile;
-    char answer = 'n';
     char endAnswer = 'n';
+    std::filesystem::path pathToFile;
     nlohmann::json jd;
     std::ifstream i(R"(..\categories.json)");
     i >> jd;
@@ -52,6 +51,7 @@ int main() {
     cout << "=-=-=-=END OF TESTS!=-=-=-=" << endl;
 //    cout << encrypt(password) << endl;
     while (endAnswer != 't') {
+        char answer = 'n';
         cout << "Witaj w Password Managerze! \nProsze wpisz haslo by odszyfrowac twoje dane!: " << endl;
         std::cin >> password;
         srand(seed::generateSeed(password));

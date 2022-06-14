@@ -9,9 +9,8 @@
 
 class edit {
 public:
-    static void editPassword(std::vector<std::vector<std::string>> &vec, const std::string &nameOfPassword);
-
+    static void editPassword(std::vector<std::vector<std::string>> &vec);
     static void changingValues(std::vector<std::vector<std::string>> &vec, const int &index);
-}
+};
 
 #endif //PROJECT_PASSWORD_MANAGER_EDIT_H

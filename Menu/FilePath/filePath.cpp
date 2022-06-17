@@ -9,6 +9,11 @@
 
 namespace fs=std::filesystem;
 
+/**
+ * Check if path is correct
+ * @param source - raw path
+ * @return corrected path
+ */
 fs::path filePathRequest(const std::string& source){
     fs::path filePath(source);
     std::string toMakeCorrectPath = "../";

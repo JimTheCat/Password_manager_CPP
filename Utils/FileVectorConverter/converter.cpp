@@ -45,7 +45,7 @@ std::vector<std::vector<std::string>> converter::fileToVector(fs::path converted
 }
 
 /**
- * Saving data from vector to file
+ * Saving data from vector to file and write timestamp to file
  * @param vectorToSave - vector with stored data
  * @param pathToFile - path to output file
  */

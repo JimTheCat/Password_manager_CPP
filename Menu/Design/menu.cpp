@@ -14,7 +14,13 @@
 
 using std::cout, std::endl;
 
-
+/**
+ * Generate menu
+ * @param vec - vector filled with passwords
+ * @param isGoodPassword - check if user password is correct
+ * @param j - container with categories
+ * @param path - path to file
+ */
 void menu::generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPassword, const nlohmann::json& j,
                         const std::filesystem::path& path) {
     int optionNumber = -1;

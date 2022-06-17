@@ -10,6 +10,10 @@
 class deletePasswd {
 public:
     static void deletePassword(std::vector<std::vector<std::string>> &vec, bool isGoodPassword);
+
+    static void singlePassword(std::vector<std::vector<std::string>> &vec);
+
+    static void parametersPassword(std::vector<std::vector<std::string>> &vec);
 };
 
 

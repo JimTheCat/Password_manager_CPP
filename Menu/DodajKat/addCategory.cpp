@@ -6,6 +6,10 @@
 #include "../../Utils/Encrypting/encrypt.h"
 #include <fstream>
 
+/**
+ * Add category to categories.json
+ * @param isGoodPassword - check if user password is correct
+ */
 void addCategory::add(bool isGoodPassword) {
     if (!isGoodPassword) std::cerr << "void add(): Blad! Opcja niedostepna przez niepoprawne haslo do programu" << std::endl;
     else {

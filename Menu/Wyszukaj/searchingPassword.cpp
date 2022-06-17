@@ -6,6 +6,10 @@
 #include <algorithm>
 #include "searchingPassword.h"
 
+/**
+ * Searches passwords in vector
+ * @param vec - vector filled with encoded passwords
+ */
 void searchingPassword::searchPassword(std::vector<std::vector<std::string>> &vec) {
     std::string pattern;
     int answer = 0;
@@ -27,6 +31,10 @@ void searchingPassword::searchPassword(std::vector<std::vector<std::string>> &ve
     }
 }
 
+/**
+ * Return all passwords in vector
+ * @param vec - vector filled with passwords
+ */
 void searchingPassword::showAllPasswords(std::vector<std::vector<std::string>> &vec){
     int index = 1;
     for (const auto& i : vec){
@@ -36,9 +44,14 @@ void searchingPassword::showAllPasswords(std::vector<std::vector<std::string>> &
         }
         std::cout << "\n";
     }
-    sleep(1);
+//    std::cin.ignore();
+    //TODO: Ogarnac stopa jakiegos by poprawic komfort przegladania :3
 }
 
+/**
+ * Returns selected passowrds contains pattern.
+ * @param vec - vector filled with passwords
+ */
 void searchingPassword::showCurrentPasswords(std::vector<std::vector<std::string>>& vec){
     int numberOfParameters;
     int index = 1;

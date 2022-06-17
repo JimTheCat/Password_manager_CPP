@@ -7,6 +7,11 @@
 #include <fstream>
 #include <unistd.h>
 
+/**
+ * Delete category in categories.json
+ * @param vec - vector filled with passwords
+ * @param isGoodPassword - check if user password is correct
+ */
 void deleteCategory::deleteCat(std::vector<std::vector<std::string>> &vec, bool isGoodPassword) {
     if (!isGoodPassword) std::cerr << "void deleteCat(): Blad! Opcja niedostepna przez niepoprawne haslo do programu" << std::endl;
     else {
@@ -40,6 +45,11 @@ void deleteCategory::deleteCat(std::vector<std::vector<std::string>> &vec, bool 
     }
 }
 
+/**
+ * Deletes passwords connected with deleted category
+ * @param nameOfCategory - name of category
+ * @param vec - vector filled with passwords
+ */
 void deleteCategory::deletePasswordsContainCurrentCategory(const std::string& nameOfCategory,
                                                            std::vector<std::vector<std::string>>& vec) {
     std::vector<int> vecOfIndex;

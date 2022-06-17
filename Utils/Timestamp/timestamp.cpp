@@ -37,7 +37,10 @@ std::string timestamp::realTS() {
     }
     return tsToReturn;
 }
-
+/**
+ * Display stylish timestamp
+ * @param vec - vector with encoded passwords
+ */
 void timestamp::decryptTS(std::vector<std::vector<std::string>> vec){
     struct tm * ptm;
     std::string timeStamp;

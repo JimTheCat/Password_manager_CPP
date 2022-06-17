@@ -6,6 +6,11 @@
 #include <algorithm>
 #include "sort.h"
 
+/**
+ * Sort passwords by parameters
+ * @param vec - vector filled with passwords
+ * @param isGoodPassword - check if user password is correct
+ */
 void sort::sorting(std::vector<std::vector<std::string>> &vec, bool isGoodPassword) {
     if (!isGoodPassword) std::cerr << "void sorting(): Blad! Opcja niedostepna przez niepoprawne haslo do programu" << std::endl;
     else {

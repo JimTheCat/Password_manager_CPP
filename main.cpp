@@ -1,5 +1,19 @@
+/*
+    Ta aplikacja została napisana przez Patryka Kłosińskiego.
+    Jeśli chcesz wykorzystać ten kod proszę o nie usuwanie tego komentarza!
+    Bardzo dziękuje!
+    ---------------------------------------------------------------------------
+    This app was written by Patryk Kłosiński.
+    If you want to use this code please don't delete this comment!
+    Thank you very much!
+    ---------------------------------------------------------------------------
+    GitHub: https://github.com/JimTheCat
+    E-Mail: klosinski.patryk2137@gmail.com
+ */
+
 #include <iostream>
 #include <fstream>
+#include <unistd.h>
 #include "Utils/Auth/auth.h"
 #include "Utils/Seed/seed.h"
 #include "Menu/FilePath/filePath.h"
@@ -20,50 +34,29 @@ int main() {
     string fileData;
     char endAnswer = 'n';
     std::filesystem::path pathToFile;
-    nlohmann::json jd;
-    std::ifstream i(R"(..\categories.json)");
-    i >> jd;
-    cout << jd["categories"][0].get<string>() << endl;
-    i.close();
     /*
-     * HASŁO DO PROGRAMU TO: trudneHaslo123
+     * HASŁO DO PROGRAMU TO: trudneHaslo123 (haslo podane tutaj jest tylko informacja dla sprawdzajacego więc prosze mi nie ucinać pkt za to :<)
      */
-//    string testaa = encrypt("Ziemniaki");
-//    string test2 = encrypt("TrudneBardzoHaslo*2137");
-//    cout << "START" << endl << testaa << endl << "END" << endl << decrypt(testaa) << endl;
-//    cout << "START" << endl << testaa << endl << "END" << endl << wrongDecrypt(testaa) << endl;
-//    cout << "START" << endl << test2 << endl << "END" << endl << decrypt(test2) << endl;
-//    cout << "START" << endl << test2 << endl << "END" << endl << wrongDecrypt(test2) << endl;
-//
-//    cout << auth::checkPassword("BardzoTrudneHaslo*2137") << endl;
-//
-//    cout << "-------------------" << endl;
-//
-//    std::string test = "assss 322 aaaa";
-//    std::string separator = " ";
-//    std::string result = test.substr(0 , test.find(separator));
-//    test.erase(0, test.find(separator) + 1);
-//    result = test.substr(0 , test.find(separator));
-//
-//    cout << result << endl;
-//    cin >> password;
-//    srand(seed::generateSeed(password));
-    cout << "=-=-=-=END OF TESTS!=-=-=-=" << endl;
-//    cout << encrypt(password) << endl;
+
     while (endAnswer != 't') {
         char answer = 'n';
-        cout << "Witaj w Password Managerze! \nProsze wpisz haslo by odszyfrowac twoje dane!: " << endl;
+        cout << "Witaj w Password Managerze! \nProsze wpisz haslo do programu!: " << endl;
         std::cin >> password;
         srand(seed::generateSeed(password));
         try {
             while (answer != 't') {
-                cout << "Wpisz sciezke do pliku ktory chcesz odszyfrowac: " << endl;
+                cout << "Wpisz sciezke do pliku ktory chcesz odszyfrowac (musi zawierac rozszerzenie pliku '.txt'): " << endl;
                 std::cin >> filePath;
+
                 pathToFile = filePathRequest(filePath);
                 vectorTestowy = converter::fileToVector(pathToFile, auth::checkPassword(password));
+
                 if (vectorTestowy.empty()) cout << "Timestamp bedzie przydzielony gdy dodasz haslo" << endl;
-                else timestamp::decryptTS(vectorTestowy);
-                menu::generateMenu(vectorTestowy, auth::checkPassword(password), jd, pathToFile);
+                else timestamp::formatedTS(vectorTestowy);
+                sleep(2);
+
+                menu::generateMenu(vectorTestowy, auth::checkPassword(password), pathToFile);
+
                 cout << "Czy chcesz zakonczyc dzialanie programu na tym pliku? [t/n]: " << endl;
                 std::cin >> answer;
             }

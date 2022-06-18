@@ -1,6 +1,18 @@
 //
 // Created by Jimmy on 24.05.2022.
 //
+/*
+    Ta aplikacja została napisana przez Patryka Kłosińskiego.
+    Jeśli chcesz wykorzystać ten kod proszę o nie usuwanie tego komentarza!
+    Bardzo dziękuje!
+    ---------------------------------------------------------------------------
+    This app was written by Patryk Kłosiński.
+    If you want to use this code please don't delete this comment!
+    Thank you very much!
+    ---------------------------------------------------------------------------
+    GitHub: https://github.com/JimTheCat
+    E-Mail: klosinski.patryk2137@gmail.com
+ */
 
 #include <fstream>
 #include <iterator>
@@ -15,19 +27,19 @@
  * @param isGoodPassword - information about the correct password
  * @return filled vector with data
  */
-std::vector<std::vector<std::string>> converter::fileToVector(fs::path convertedPath, bool isGoodPassword) {
+std::vector<std::vector<std::string>> converter::fileToVector(const fs::path& convertedPath, bool isGoodPassword) {
     int numberOfColumns = 6;
     std::vector<std::vector<std::string>> vectorToReturn;
     std::string fileData;
     std::ifstream readFile(convertedPath);
     std::string separator = " ";
-    std::string timestamp;
     bool firstLine = true;
 
     if (convertedPath.empty()) return vectorToReturn;
 
     while (std::getline(readFile, fileData)){
         std::vector<std::string> vectorOfLines;
+        std::string timestamp;
         std::string result;
         for (int i = 0; i < numberOfColumns - 1; i++){
             result = fileData.substr(0, fileData.find(separator));
@@ -36,11 +48,13 @@ std::vector<std::vector<std::string>> converter::fileToVector(fs::path converted
             fileData.erase(0, fileData.find(separator) + 1);
         }
         if (firstLine) {
-            vectorOfLines.push_back(timestamp::realTS());
+            timestamp = timestamp::realTS();
             firstLine = false;
-        } else vectorOfLines.push_back(timestamp::randomTS());
+        } else timestamp = timestamp::randomTS();
+        vectorOfLines.push_back(timestamp);
         vectorToReturn.push_back(vectorOfLines);
     }
+    readFile.close();
     return vectorToReturn;
 }
 
@@ -56,7 +70,7 @@ void converter::vectorToFile(std::vector<std::vector<std::string>> &vectorToSave
     std::string timestampToPush;
     for (auto & i : vectorToSave){
         for (int j = 0; j < (vectorToSave.at(index).size() == 6 ? vectorToSave.at(index).size() - 1 : vectorToSave.at(index).size()); j++){
-            ofs << encrypt(i[j]) << " ";
+            ofs << encrypt::encryptText(i[j]) << " ";
         }
         if (index == 0) timestampToPush = timestamp::realTS();
         else timestampToPush = timestamp::randomTS();
@@ -65,6 +79,5 @@ void converter::vectorToFile(std::vector<std::vector<std::string>> &vectorToSave
         index++;
         if(i.size() == 5) i.push_back(timestampToPush);
     }
-
     ofs.close();
 }

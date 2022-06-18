@@ -1,12 +1,25 @@
 //
 // Created by Jimmy on 27.05.2022.
 //
+/*
+    Ta aplikacja została napisana przez Patryka Kłosińskiego.
+    Jeśli chcesz wykorzystać ten kod proszę o nie usuwanie tego komentarza!
+    Bardzo dziękuje!
+    ---------------------------------------------------------------------------
+    This app was written by Patryk Kłosiński.
+    If you want to use this code please don't delete this comment!
+    Thank you very much!
+    ---------------------------------------------------------------------------
+    GitHub: https://github.com/JimTheCat
+    E-Mail: klosinski.patryk2137@gmail.com
+ */
 
 #include "addPasswd.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
 #include "../../Utils/Decrypting/decrypt.h"
+#include "../DodajKat/addCategory.h"
 
 /**
  * Add password to vector
@@ -14,53 +27,80 @@
  * @param isGoodPassword - check if user password is correct
  * @param j - container with categories
  */
-void addPasswd::addPassword(std::vector<std::vector<std::string>> &vec, bool isGoodPassword, nlohmann::json j) {
-    if (!isGoodPassword) std::cerr << "Password is wrong! This option is not available!" << std::endl;
+void addPasswd::addPassword(std::vector<std::vector<std::string>> &vec, bool isGoodPassword) {
+    if (!isGoodPassword) std::cerr << "void addPassword(): Blad! Opcja niedostepna przez niepoprawne haslo do programu" << std::endl;
     else {
-        char answer;
-        std::string textToPush;
-        bool didFoundCategory = false;
-        bool isNameUnique = false;
-        std::vector<std::string> passwordToPush;
 
-        std::cout << "Czy chcesz randomowe haslo? [t/n]: " << std::endl;
-        std::cin >> answer;
-        if (answer == 't') textToPush = generatePassword();
-        else if (answer == 'n') {
-            std::cout << "Podaj haslo: " << std::endl;
-            std::cin >> textToPush;
-            addPasswd::checkingStrengthOfPassword(textToPush);
+        nlohmann::json j;
+        std::ifstream i(R"(..\categories.json)");
+        if (!i.good()) {
+            i.close();
+            addCategory::createCategories();
+            i.open(R"(..\categories.json)");
         }
-        passwordToPush.push_back(textToPush);
-        std::cout << "Podaj nazwe: " << std::endl;
-        while (!isNameUnique) {
-            std::cin >> textToPush;
-            isNameUnique = checkingUniqueOfName(textToPush, vec);
-            if (!isNameUnique) std::cout << "Nazwa juz wystapila w innym hasle! Wprowadz inna nazwe: " << std::endl;
-            else passwordToPush.push_back(textToPush);
-        }
-        std::cout << "Podaj kategorie: " << std::endl;
-        addPasswd::showCategories();
-        std::cin >> textToPush;
-        for (const auto& i: j["categories"]) {
-            if (!decrypt(i.get<std::string>()).compare(textToPush)) {
-                passwordToPush.push_back(textToPush);
-                didFoundCategory = true;
+        i >> j;
+        i.close();
+
+        if (j["categories"].empty()) std::cerr << "void addPassword(): Nie mozna dodac hasla poniewaz nie posiadasz zadnych kategorii" << std::endl;
+        else {
+            std::vector<std::string> passwordToPush;
+            std::string textToPush;
+            bool didFoundCategory = false;
+            bool isNameUnique = false;
+            char answer;
+            char page = 'n';
+            char login = 'n';
+
+            std::cout << "Czy chcesz wygenerowac losowe haslo? [t/n]: " << std::endl;
+            std::cin >> answer;
+            if (answer == 't') textToPush = generatePassword();
+            else if (answer == 'n') {
+                std::cout << "Podaj haslo: " << std::endl;
+                std::cin >> textToPush;
+                addPasswd::checkingStrengthOfPassword(textToPush);
             }
+            passwordToPush.push_back(textToPush);
+            std::cout << "Podaj nazwe (nazwa musi byc unikatowa): " << std::endl;
+            while (!isNameUnique) {
+                std::cin >> textToPush;
+                isNameUnique = checkingUniqueOfName(textToPush, vec);
+                if (!isNameUnique) std::cout << "Nazwa juz wystapila w innym hasle! Wprowadz inna nazwe: " << std::endl;
+                else passwordToPush.push_back(textToPush);
+            }
+            std::cout << "Podaj kategorie: " << std::endl;
+            addPasswd::showCategories(j);
+            std::cin >> textToPush;
+            for (const auto &k: j["categories"]) {
+                if (decrypt(k.get<std::string>()) == textToPush) {
+                    passwordToPush.push_back(textToPush);
+                    didFoundCategory = true;
+                }
+            }
+            if (!didFoundCategory) throw std::invalid_argument("Nie ma takiej kategorii! Prosze upewnic sie ze taka kategoria istnieje");
+            std::cout << "Czy chcesz podac strone WWW? [t/n]: " << std::endl;
+            std::cin >> page;
+            if (page == 't') {
+                std::cout << "Podaj Strone WWW: " << std::endl;
+                std::cin >> textToPush;
+                passwordToPush.push_back(textToPush);
+            }
+            else passwordToPush.emplace_back("-");
+
+            std::cout << "Czy chcesz podac login? [t/n]: " << std::endl;
+            std::cin >> login;
+            if (login == 't') {
+                std::cout << "Podaj Login: " << std::endl;
+                std::cin >> textToPush;
+                passwordToPush.push_back(textToPush);
+            } else passwordToPush.emplace_back("-");
+
+            vec.push_back(passwordToPush);
+            std::cout << "Haslo zostalo dodane pomyslnie!" << std::endl;
         }
-        if (!didFoundCategory) throw std::invalid_argument("Nie ma takiej kategorii");
-        std::cout << "Podaj Strone WWW (opcjonalne): " << std::endl;
-        std::cin >> textToPush;
-        if (textToPush.empty() || !textToPush.compare("\n")) passwordToPush.emplace_back("-");
-        else passwordToPush.push_back(textToPush);
-
-        std::cout << "Podaj Login (opcjonalne): " << std::endl;
-        std::cin >> textToPush;
-        if (textToPush.empty()) passwordToPush.emplace_back("-");
-        else passwordToPush.push_back(textToPush);
-
-        vec.push_back(passwordToPush);
     }
+    std::cin.ignore();
+    std::cout << "Nacisnij ENTER by kontynuowac" << std::endl;
+    std::cin.get();
 }
 
 /**
@@ -68,13 +108,17 @@ void addPasswd::addPassword(std::vector<std::vector<std::string>> &vec, bool isG
  * @return password generated by another function below
  */
 std::string addPasswd::generatePassword() {
-    char answer;
     int lengthOfPassword;
+    char answer;
     bool isUpperCase;
     bool specialLetters;
 
     std::cout << "Jak dlugie ma byc twoje haslo?: " << std::endl;
-    std::cin >> lengthOfPassword;
+    try {
+        std::cin >> lengthOfPassword;
+    } catch (std::invalid_argument& e) {
+        std::cout << e.what() << std::endl;
+    }
     std::cout << "Czy ma zawierac duze i male litery? (t/n): " << std::endl;
     std::cin >> answer;
     if (answer == 't') isUpperCase = true;
@@ -131,15 +175,12 @@ std::string addPasswd::generatedPasswordToReturn(int lengthOfPassword, bool isUp
 /**
  * Print all categories
  */
-void addPasswd::showCategories() {
-    nlohmann::json j;
-    std::ifstream i("../categories.json");
-    i >> j;
-
+void addPasswd::showCategories(nlohmann::json j) {
     std::cout << "Oto lista dostepnych kategorii: " << std::endl;
     for (const auto &k: j["categories"]) {
         std::cout << decrypt(k.get<std::string>()) << std::endl;
     }
+    std::cout << "\n";
 }
 
 /**
@@ -163,7 +204,7 @@ void addPasswd::checkingStrengthOfPassword(const std::string &passwordToCheck) {
 }
 
 /**
- * Ckeck unique of name
+ * Check unique of name
  * @param nameToCheck - name to check
  * @param vec - vector filled with passwords
  * @return true if name is unique otherwise false

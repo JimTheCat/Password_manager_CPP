@@ -1,6 +1,18 @@
 //
 // Created by Jimmy on 03.06.2022.
 //
+/*
+    Ta aplikacja została napisana przez Patryka Kłosińskiego.
+    Jeśli chcesz wykorzystać ten kod proszę o nie usuwanie tego komentarza!
+    Bardzo dziękuje!
+    ---------------------------------------------------------------------------
+    This app was written by Patryk Kłosiński.
+    If you want to use this code please don't delete this comment!
+    Thank you very much!
+    ---------------------------------------------------------------------------
+    GitHub: https://github.com/JimTheCat
+    E-Mail: klosinski.patryk2137@gmail.com
+ */
 
 #include <algorithm>
 #include "deletePasswd.h"
@@ -12,6 +24,7 @@
  */
 void deletePasswd::deletePassword(std::vector<std::vector<std::string>> &vec, bool isGoodPassword) {
     if (!isGoodPassword) std::cerr << "void deletePassword(): Blad! Opcja niedostepna przez niepoprawne haslo do programu" << std::endl;
+    else if (vec.empty()) std::cerr << "void deletePassword(): Nie mozna usunac hasla poniewaz lista hasel jest pusta!" << std::endl;
     else {
         int action = 0;
 
@@ -31,6 +44,9 @@ void deletePasswd::deletePassword(std::vector<std::vector<std::string>> &vec, bo
             }
             default: std::cerr << "void deletePassword(): Podano niepoprawny numer!" << std::endl;
         }
+        std::cin.ignore();
+        std::cout << "Nacisnij ENTER by kontynuowac" << std::endl;
+        std::cin.get();
     }
 }
 
@@ -77,7 +93,7 @@ void deletePasswd::parametersPassword(std::vector<std::vector<std::string>> &vec
     bool passwordFounded = false;
     std::vector<int> indexesOfPasswords;
     std::string passwordToDelete;
-    int index = 0;
+    int index;
     int selectedColumn = -1;
     int countOfParameters = 0;
     std::cout << "Po ilu parametrach chcesz szukac! [1-5]: " << std::endl;
@@ -124,7 +140,7 @@ void deletePasswd::parametersPassword(std::vector<std::vector<std::string>> &vec
                 for (int k = indexesOfPasswords.size() - 1; k >= 0; k--){
                     vec.erase(vec.begin() + indexesOfPasswords[k]);
                 }
-            };
+            }
         }
     }
 }

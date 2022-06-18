@@ -1,6 +1,18 @@
 //
 // Created by Jimmy on 03.06.2022.
 //
+/*
+    Ta aplikacja została napisana przez Patryka Kłosińskiego.
+    Jeśli chcesz wykorzystać ten kod proszę o nie usuwanie tego komentarza!
+    Bardzo dziękuje!
+    ---------------------------------------------------------------------------
+    This app was written by Patryk Kłosiński.
+    If you want to use this code please don't delete this comment!
+    Thank you very much!
+    ---------------------------------------------------------------------------
+    GitHub: https://github.com/JimTheCat
+    E-Mail: klosinski.patryk2137@gmail.com
+ */
 
 #include "deleteCategory.h"
 #include "../../Utils/Decrypting/decrypt.h"
@@ -22,26 +34,44 @@ void deleteCategory::deleteCat(std::vector<std::vector<std::string>> &vec, bool 
         i >> j;
         i.close();
 
-        std::cout
-                << "Wpisz nazwe kategorii ktora chcesz usunac\n!UWAGA!\nUsuniecie kategorii wiaze sie z usunieciem wszystkich hasel wraz z wpisana kategoria: "
-                << std::endl;
-        std::cin >> nameOfCategory;
+        if (j["categories"].empty()) std::cerr << "void deleteCat(): Nie mozna usunac kategorii poniewaz lista jest pusta" << std::endl;
+        else {
+            bool categoryExists = false;
+            std::cout << "Lista kategorii do wyboru: " << std::endl;
 
-        for (const auto& k: j["categories"]) {
-            if (decrypt(k.get<std::string>()) == nameOfCategory) {
-                deletePasswordsContainCurrentCategory(nameOfCategory, vec);
-                j["categories"].erase(index);
-                break;
-            } else index++;
+            for (const auto &k: j["categories"]) {
+                std::cout << decrypt(k) << std::endl;
+            }
+
+            std::cout << "\n";
+
+            std::cout
+                    << "Wpisz nazwe kategorii ktora chcesz usunac\n!UWAGA!\nUsuniecie kategorii wiaze sie z usunieciem wszystkich hasel wraz z wpisana kategoria: "
+                    << std::endl;
+            std::cin >> nameOfCategory;
+
+
+            for (const auto &k: j["categories"]) {
+                if (decrypt(k.get<std::string>()) == nameOfCategory) {
+                    categoryExists = true;
+                    deletePasswordsContainCurrentCategory(nameOfCategory, vec);
+                    j["categories"].erase(index);
+                    break;
+                } else index++;
+            }
+
+            if(categoryExists) {
+                std::ofstream o("../categories.json");
+                o << std::setw(4) << j << std::endl;
+                o.close();
+
+                std::cout << "Kategoria " << nameOfCategory << " zostala usunieta!" << std::endl;
+            }
+            else std::cout << "Wpisana nazwa kategorii nie istnieje!" << std::endl;
+            std::cin.ignore();
+            std::cout << "Nacisnij ENTER by kontynuowac" << std::endl;
+            std::cin.get();
         }
-
-        std::ofstream o("../categories.json");
-        o << std::setw(4) << j << std::endl;
-        o.close();
-
-        std::cout << "Kategoria " << nameOfCategory << " zostala usunieta!" << std::endl;
-
-        sleep(2);
     }
 }
 

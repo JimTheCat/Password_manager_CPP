@@ -1,8 +1,19 @@
 //
 // Created by Jimmy on 03.06.2022.
 //
+/*
+    Ta aplikacja została napisana przez Patryka Kłosińskiego.
+    Jeśli chcesz wykorzystać ten kod proszę o nie usuwanie tego komentarza!
+    Bardzo dziękuje!
+    ---------------------------------------------------------------------------
+    This app was written by Patryk Kłosiński.
+    If you want to use this code please don't delete this comment!
+    Thank you very much!
+    ---------------------------------------------------------------------------
+    GitHub: https://github.com/JimTheCat
+    E-Mail: klosinski.patryk2137@gmail.com
+ */
 
-#include <unistd.h>
 #include <algorithm>
 #include "searchingPassword.h"
 
@@ -37,15 +48,19 @@ void searchingPassword::searchPassword(std::vector<std::vector<std::string>> &ve
  */
 void searchingPassword::showAllPasswords(std::vector<std::vector<std::string>> &vec){
     int index = 1;
-    for (const auto& i : vec){
-        std::cout << index++ << ". ";
-        for (const auto& j : i){
-            std::cout << j << " ";
+    if (vec.empty()) std::cout << "Nie znaleziono zadnych hasel!" << std::endl;
+    else {
+        for (const auto &i: vec) {
+            std::cout << index++ << ". ";
+            for (const auto &j: i) {
+                std::cout << j << "\t";
+            }
+            std::cout << "\n";
         }
-        std::cout << "\n";
     }
-//    std::cin.ignore();
-    //TODO: Ogarnac stopa jakiegos by poprawic komfort przegladania :3
+    std::cin.ignore();
+    std::cout << "Nacisnij ENTER by kontynuowac" << std::endl;
+    std::cin.get();
 }
 
 /**
@@ -59,7 +74,7 @@ void searchingPassword::showCurrentPasswords(std::vector<std::vector<std::string
     int indexOfColumn;
     std::vector<int> indexOfVector;
 
-    std::cout << "Po ilu parametrach chcesz szukac?" << std::endl;
+    std::cout << "Po ilu parametrach chcesz szukac? [1-5]" << std::endl;
     std::cin >> numberOfParameters;
     for (const auto& i : nameOfColumns){
         std::cout << index++ << ". " << i << std::endl;
@@ -88,10 +103,16 @@ void searchingPassword::showCurrentPasswords(std::vector<std::vector<std::string
     std::sort(indexOfVector.begin(), indexOfVector.end());
     indexOfVector.erase(std::unique(indexOfVector.begin(), indexOfVector.end()), indexOfVector.end());
 
+    index = 1;
     for (auto i : indexOfVector){
+        std::cout << index++ << ". ";
         for( int j = 0; j < 5; j++){
             std::cout << vec[i][j] << " ";
         }
         std::cout << "\n";
     }
+
+    std::cin.ignore();
+    std::cout << "Nacisnij ENTER by kontynuowac" << std::endl;
+    std::cin.get();
 }

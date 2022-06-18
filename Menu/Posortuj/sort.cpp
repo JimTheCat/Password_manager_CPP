@@ -1,8 +1,19 @@
 //
 // Created by Jimmy on 03.06.2022.
 //
+/*
+    Ta aplikacja została napisana przez Patryka Kłosińskiego.
+    Jeśli chcesz wykorzystać ten kod proszę o nie usuwanie tego komentarza!
+    Bardzo dziękuje!
+    ---------------------------------------------------------------------------
+    This app was written by Patryk Kłosiński.
+    If you want to use this code please don't delete this comment!
+    Thank you very much!
+    ---------------------------------------------------------------------------
+    GitHub: https://github.com/JimTheCat
+    E-Mail: klosinski.patryk2137@gmail.com
+ */
 
-#include <unistd.h>
 #include <algorithm>
 #include "sort.h"
 
@@ -13,6 +24,7 @@
  */
 void sort::sorting(std::vector<std::vector<std::string>> &vec, bool isGoodPassword) {
     if (!isGoodPassword) std::cerr << "void sorting(): Blad! Opcja niedostepna przez niepoprawne haslo do programu" << std::endl;
+    else if (vec.empty()) std::cerr << "void sorting(): Nie mozna posortowac hasel poniewaz nie znaleziono zadnego!" << std::endl;
     else {
         int choice = 0;
         int index = 1;
@@ -25,7 +37,6 @@ void sort::sorting(std::vector<std::vector<std::string>> &vec, bool isGoodPasswo
         for (const auto &i: nameOfColumns) {
             std::cout << index++ << ". " << i << std::endl;
         }
-        sleep(1);
         switch (choice) {
             case 1: {
                 int parameter;
@@ -60,5 +71,9 @@ void sort::sorting(std::vector<std::vector<std::string>> &vec, bool isGoodPasswo
             default:
                 std::cerr << "void sorting(): Podano nieprawidlowy argument!" << std::endl;
         }
+
+        std::cin.ignore();
+        std::cout << "Nacisnij ENTER by kontynuowac" << std::endl;
+        std::cin.get();
     }
 }

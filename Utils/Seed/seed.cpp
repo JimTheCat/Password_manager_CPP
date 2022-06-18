@@ -1,6 +1,18 @@
 //
 // Created by Jimmy on 28.04.2022.
 //
+/*
+    Ta aplikacja została napisana przez Patryka Kłosińskiego.
+    Jeśli chcesz wykorzystać ten kod proszę o nie usuwanie tego komentarza!
+    Bardzo dziękuje!
+    ---------------------------------------------------------------------------
+    This app was written by Patryk Kłosiński.
+    If you want to use this code please don't delete this comment!
+    Thank you very much!
+    ---------------------------------------------------------------------------
+    GitHub: https://github.com/JimTheCat
+    E-Mail: klosinski.patryk2137@gmail.com
+ */
 
 #include "seed.h"
 
@@ -14,6 +26,5 @@ int seed::generateSeed(std::string &Password) {
     for (char index : Password){
         result += index;
     }
-    std::cout << result << std::endl;
     return result;
 }

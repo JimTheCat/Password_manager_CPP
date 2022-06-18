@@ -1,6 +1,18 @@
 //
 // Created by Jimmy on 27.05.2022.
 //
+/*
+    Ta aplikacja została napisana przez Patryka Kłosińskiego.
+    Jeśli chcesz wykorzystać ten kod proszę o nie usuwanie tego komentarza!
+    Bardzo dziękuje!
+    ---------------------------------------------------------------------------
+    This app was written by Patryk Kłosiński.
+    If you want to use this code please don't delete this comment!
+    Thank you very much!
+    ---------------------------------------------------------------------------
+    GitHub: https://github.com/JimTheCat
+    E-Mail: klosinski.patryk2137@gmail.com
+ */
 
 #include "menu.h"
 #include "../Wyszukaj/searchingPassword.h"
@@ -18,10 +30,9 @@ using std::cout, std::endl;
  * Generate menu
  * @param vec - vector filled with passwords
  * @param isGoodPassword - check if user password is correct
- * @param j - container with categories
  * @param path - path to file
  */
-void menu::generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPassword, const nlohmann::json& j,
+void menu::generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPassword,
                         const std::filesystem::path& path) {
     int optionNumber = -1;
 
@@ -47,34 +58,42 @@ void menu::generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPa
         cout << "*---------------------*" << endl;
 
         std::cin >> optionNumber;
-
-        switch (optionNumber) {
-            case 1:
-                searchingPassword::searchPassword(vec);
-                break;
-            case 2:
-                sort::sorting(vec, isGoodPassword);
-                break;
-            case 3:
-                addPasswd::addPassword(vec, isGoodPassword, j);
-                break;
-            case 4:
-                edit::editPassword(vec, isGoodPassword);
-                break;
-            case 5:
-                deletePasswd::deletePassword(vec, isGoodPassword);
-                break;
-            case 6:
-                addCategory::add(isGoodPassword);
-                break;
-            case 7:
-                deleteCategory::deleteCat(vec, isGoodPassword);
-                break;
-            case 0:
-                cout << "Bye bye! \nZapisuje zmiany do pliku!" << endl;
-                break;
-            default: std::cerr << "void generateMenu(): Wrong menu number" << endl;
+        try {
+            switch (optionNumber) {
+                case 1:
+                    searchingPassword::searchPassword(vec);
+                    break;
+                case 2:
+                    sort::sorting(vec, isGoodPassword);
+                    break;
+                case 3:
+                    addPasswd::addPassword(vec, isGoodPassword);
+                    break;
+                case 4:
+                    edit::editPassword(vec, isGoodPassword);
+                    break;
+                case 5:
+                    deletePasswd::deletePassword(vec, isGoodPassword);
+                    break;
+                case 6:
+                    addCategory::add(isGoodPassword);
+                    break;
+                case 7:
+                    deleteCategory::deleteCat(vec, isGoodPassword);
+                    break;
+                case 0:
+                    cout << "Bye bye! \nZapisuje zmiany do pliku!" << endl;
+                    break;
+                default:
+                    std::cerr << "void generateMenu(): Wrong menu number" << endl;
+            }
+            if (isGoodPassword) converter::vectorToFile(vec, path);
         }
-        converter::vectorToFile(vec, path);
+        catch (std::invalid_argument &e) {
+            std::cerr << e.what() << endl;
+            std::cin.ignore();
+            std::cout << "Nacisnij ENTER by kontynuowac" << std::endl;
+            std::cin.get();
+        }
     }
 }

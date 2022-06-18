@@ -1,12 +1,23 @@
 //
 // Created by Jimmy on 27.05.2022.
 //
+/*
+    Ta aplikacja została napisana przez Patryka Kłosińskiego.
+    Jeśli chcesz wykorzystać ten kod proszę o nie usuwanie tego komentarza!
+    Bardzo dziękuje!
+    ---------------------------------------------------------------------------
+    This app was written by Patryk Kłosiński.
+    If you want to use this code please don't delete this comment!
+    Thank you very much!
+    ---------------------------------------------------------------------------
+    GitHub: https://github.com/JimTheCat
+    E-Mail: klosinski.patryk2137@gmail.com
+ */
 
 #include "timestamp.h"
 #include <iostream>
-#include <time.h>
+#include <ctime>
 #include <vector>
-#include <zconf.h>
 
 /**
  * Generate decrypted fake timestamp
@@ -41,7 +52,7 @@ std::string timestamp::realTS() {
  * Display stylish timestamp
  * @param vec - vector with encoded passwords
  */
-void timestamp::decryptTS(std::vector<std::vector<std::string>> vec){
+void timestamp::formatedTS(std::vector<std::vector<std::string>>& vec){
     struct tm * ptm;
     std::string timeStamp;
     std::string result;
@@ -53,5 +64,4 @@ void timestamp::decryptTS(std::vector<std::vector<std::string>> vec){
     ptm = localtime(&time1);
     strftime(&result[0], 40, "Ostatni timestamp: %x %X", ptm);
     std::cout << result << std::endl;
-    sleep(1);
 }

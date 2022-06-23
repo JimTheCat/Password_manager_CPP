@@ -24,7 +24,7 @@
 using std::cout, std::endl, std::string, std::vector;
 
 /**
- * Main function. There is the origin of the program.
+ * Main function. The program starts here.
  * @return exit of program without errors
  */
 int main() {

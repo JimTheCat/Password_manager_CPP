@@ -28,11 +28,11 @@ using std::cout, std::endl;
 
 /**
  * Generate menu
- * @param vec - vector filled with passwords
- * @param isGoodPassword - check if user password is correct
+ * @param vec - vector filled with decrypted passwords
+ * @param isGoodPassword - true if password is correct, otherwise false
  * @param path - path to file
  */
-void menu::generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPassword,
+void menu::generateMenu(std::vector<std::vector<std::string>>& vec, bool isGoodPassword,
                         const std::filesystem::path& path) {
     int optionNumber = -1;
 

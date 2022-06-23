@@ -17,9 +17,9 @@
 #include "seed.h"
 
 /**
- * Generating seed
- * @param Password - password taken from user
- * @return Seed for srand usage
+ * Generate seed
+ * @param Password - password given by user
+ * @return Seed for random number generator
  */
 int seed::generateSeed(std::string &Password) {
     int result = 0;

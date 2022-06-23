@@ -18,11 +18,7 @@
 #define PROJECT_PASSWORD_MANAGER_ENCRYPT_H
 #include <iostream>
 
-/**
- *
- * @param Combine; element to encryptText
- * @return encrypted element
- */
+
 class encrypt {
 public:
     static std::string encryptText(std::string const &Combine);

@@ -18,8 +18,8 @@
 #include "searchingPassword.h"
 
 /**
- * Searches passwords in vector
- * @param vec - vector filled with encoded passwords
+ * Search passwords in vector
+ * @param vec - vector filled with decrypted passwords
  */
 void searchingPassword::searchPassword(std::vector<std::vector<std::string>> &vec) {
     std::string pattern;
@@ -44,7 +44,7 @@ void searchingPassword::searchPassword(std::vector<std::vector<std::string>> &ve
 
 /**
  * Return all passwords in vector
- * @param vec - vector filled with passwords
+ * @param vec - vector filled with decrypted passwords
  */
 void searchingPassword::showAllPasswords(std::vector<std::vector<std::string>> &vec){
     int index = 1;
@@ -64,8 +64,8 @@ void searchingPassword::showAllPasswords(std::vector<std::vector<std::string>> &
 }
 
 /**
- * Returns selected passowrds contains pattern.
- * @param vec - vector filled with passwords
+ * Return selected passwords matching pattern.
+ * @param vec - vector filled with decrypted passwords
  */
 void searchingPassword::showCurrentPasswords(std::vector<std::vector<std::string>>& vec){
     int numberOfParameters;

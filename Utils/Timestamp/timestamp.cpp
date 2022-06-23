@@ -20,8 +20,8 @@
 #include <vector>
 
 /**
- * Generate decrypted fake timestamp
- * @return decrypted timestamp
+ * Generate encrypted fake timestamp
+ * @return encrypted timestamp
  */
 std::string timestamp::randomTS() {
     std::string numberToReturn;
@@ -32,8 +32,8 @@ std::string timestamp::randomTS() {
 }
 
 /**
- * Generate decrypted timestamp
- * @return decrypted timestamp
+ * Generate encrypted timestamp
+ * @return encrypted timestamp
  */
 std::string timestamp::realTS() {
     std::string TS = std::to_string((int) time(nullptr));
@@ -49,8 +49,8 @@ std::string timestamp::realTS() {
     return tsToReturn;
 }
 /**
- * Display stylish timestamp
- * @param vec - vector with encoded passwords
+ * Display formatted timestamp
+ * @param vec - vector where timestamp is stored
  */
 void timestamp::formatedTS(std::vector<std::vector<std::string>>& vec){
     struct tm * ptm;

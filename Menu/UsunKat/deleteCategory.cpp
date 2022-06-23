@@ -21,8 +21,8 @@
 
 /**
  * Delete category in categories.json
- * @param vec - vector filled with passwords
- * @param isGoodPassword - check if user password is correct
+ * @param vec - vector filled with decrypted passwords
+ * @param isGoodPassword - true if password is correct, otherwise false
  */
 void deleteCategory::deleteCat(std::vector<std::vector<std::string>> &vec, bool isGoodPassword) {
     if (!isGoodPassword) std::cerr << "void deleteCat(): Blad! Opcja niedostepna przez niepoprawne haslo do programu" << std::endl;
@@ -76,9 +76,9 @@ void deleteCategory::deleteCat(std::vector<std::vector<std::string>> &vec, bool 
 }
 
 /**
- * Deletes passwords connected with deleted category
+ * Delete passwords with deleted category
  * @param nameOfCategory - name of category
- * @param vec - vector filled with passwords
+ * @param vec - vector filled with decrypted passwords
  */
 void deleteCategory::deletePasswordsContainCurrentCategory(const std::string& nameOfCategory,
                                                            std::vector<std::vector<std::string>>& vec) {

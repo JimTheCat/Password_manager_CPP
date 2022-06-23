@@ -19,8 +19,8 @@
 
 /**
  * Edit current password by name;
- * @param vec - vector filled with passwords
- * @param isGoodPassword - check if user password is correct
+ * @param vec - vector filled with decrypted passwords
+ * @param isGoodPassword - true if password is correct, otherwise false
  */
 void edit::editPassword(std::vector<std::vector<std::string>> &vec, bool isGoodPassword) {
     if (!isGoodPassword) std::cerr << "void editPassword(): Blad! Opcja niedostepna przez niepoprawne haslo do programu" << std::endl;
@@ -51,8 +51,8 @@ void edit::editPassword(std::vector<std::vector<std::string>> &vec, bool isGoodP
 }
 
 /**
- * Changes values of current password
- * @param vec - vector filled with passwords
+ * Change values of current password
+ * @param vec - vector filled with decrypted passwords
  * @param index - index of current password
  */
 void edit::changingValues(std::vector<std::vector<std::string>> &vec, const int& index){

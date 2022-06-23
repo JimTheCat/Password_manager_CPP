@@ -19,8 +19,8 @@
 
 /**
  * Sort passwords by parameters
- * @param vec - vector filled with passwords
- * @param isGoodPassword - check if user password is correct
+ * @param vec - vector filled with decrypted passwords
+ * @param isGoodPassword - true if password is correct, otherwise false
  */
 void sort::sorting(std::vector<std::vector<std::string>> &vec, bool isGoodPassword) {
     if (!isGoodPassword) std::cerr << "void sorting(): Blad! Opcja niedostepna przez niepoprawne haslo do programu" << std::endl;

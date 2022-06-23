@@ -22,9 +22,9 @@
 #include "../Encrypting/encrypt.h"
 
 /**
- * Saving data from file to vector
+ * Load data from file to vector
  * @param convertedPath - path to file
- * @param isGoodPassword - information about the correct password
+ * @param isGoodPassword - true if password is correct, otherwise false
  * @return filled vector with data
  */
 std::vector<std::vector<std::string>> converter::fileToVector(const fs::path& convertedPath, bool isGoodPassword) {
@@ -59,7 +59,7 @@ std::vector<std::vector<std::string>> converter::fileToVector(const fs::path& co
 }
 
 /**
- * Saving data from vector to file and write timestamp to file
+ * Save data from vector to file and write timestamp to file
  * @param vectorToSave - vector with stored data
  * @param pathToFile - path to output file
  */

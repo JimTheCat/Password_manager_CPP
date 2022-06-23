@@ -19,8 +19,8 @@
 #include <iostream>
 
 /**
- * Checking the password if it's correct.
- * @param password - password taken from user
+ * Check the password if it's correct.
+ * @param password - password given by user
  * @return true if password is correct, otherwise false
  */
 bool auth::checkPassword(const std::string& password) {

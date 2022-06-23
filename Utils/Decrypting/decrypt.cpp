@@ -17,7 +17,7 @@
 #include "decrypt.h"
 
 /**
- * Decrypting text
+ * Decrypt text
  * @param Combine - string to decrypt
  * @return decrypted string
  */
@@ -38,7 +38,7 @@ std::string decrypt(const std::string &Combine) {
 }
 
 /**
- * Fake decrypting text
+ * Fake decrypt text
  * @param Combine - string to decrypt
  * @return wrong decrypted string
  */

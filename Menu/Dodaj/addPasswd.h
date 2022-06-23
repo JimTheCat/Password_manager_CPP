@@ -29,7 +29,7 @@ public:
     friend void edit::changingValues(std::vector<std::vector<std::string>> &vec, const int& index);
 protected:
     static std::string generatePassword();
-    static std::string generatedPasswordToReturn(int lengthOfPassword, bool isUpperCase, bool specialLetters);
+    static std::string generatedPasswordToReturn(int lengthOfPassword, bool isUpperCase, bool specialChars);
     static void showCategories(nlohmann::json j);
     static void checkingStrengthOfPassword(const std::string &passwordToCheck);
     static bool checkingUniqueOfName(const std::string &nameToCheck, std::vector<std::vector<std::string>> &vec);

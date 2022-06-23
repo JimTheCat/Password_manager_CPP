@@ -19,7 +19,8 @@
 #include <iostream>
 
 
-struct auth{
+class auth{
+public:
     static bool checkPassword(const std::string& password);
 };
 

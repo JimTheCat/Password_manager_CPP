@@ -16,6 +16,7 @@
 
 #include "addCategory.h"
 #include "../../Utils/Encrypting/encrypt.h"
+#include "../../Utils/Decrypting/decrypt.h"
 #include <fstream>
 #include <filesystem>
 
@@ -23,13 +24,14 @@ namespace fs=std::filesystem;
 
 /**
  * Add category to categories.json
- * @param isGoodPassword - check if user password is correct
+ * @param isGoodPassword - true if password is correct, otherwise false
  */
 void addCategory::add(bool isGoodPassword) {
     if (!isGoodPassword) std::cerr << "void add(): Blad! Opcja niedostepna przez niepoprawne haslo do programu" << std::endl;
     else {
         std::string nameOfCategory;
         std::string nameOfPath = "../categories.json";
+        bool uniqueOfCategory = true;
         nlohmann::json j;
         fs::path path(nameOfPath);
 
@@ -40,12 +42,17 @@ void addCategory::add(bool isGoodPassword) {
         std::ifstream i(path);
         i >> j;
         i.close();
-        std::ofstream o(path);
-        j["categories"].push_back(encrypt::encryptText(nameOfCategory));
-
-        o << std::setw(4) << j << std::endl;
-        o.close();
-        std::cout << "Kategoria " << nameOfCategory << " zostala dodana pomyslnie!" << std::endl;
+        for (const auto& k : j["categories"]){
+            if (decrypt(k) == nameOfCategory) uniqueOfCategory = false;
+        }
+        if (!uniqueOfCategory) std::cerr << "Nie udalo sie dodac kategorii poniewaz znajduje sie na liscie" << std::endl;
+        else {
+            std::ofstream o(path);
+            j["categories"].push_back(encrypt::encryptText(nameOfCategory));
+            o << std::setw(4) << j << std::endl;
+            o.close();
+            std::cout << "Kategoria " << nameOfCategory << " zostala dodana pomyslnie!" << std::endl;
+        }
         std::cin.ignore();
         std::cout << "Nacisnij ENTER by kontynuowac" << std::endl;
         std::cin.get();

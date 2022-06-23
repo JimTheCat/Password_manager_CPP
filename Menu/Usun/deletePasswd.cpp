@@ -19,8 +19,8 @@
 
 /**
  * Delete password
- * @param vec - vector filled with passwords
- * @param isGoodPassword - check if user password is correct
+ * @param vec - vector filled with decrypted passwords
+ * @param isGoodPassword - true if password is correct, otherwise false
  */
 void deletePasswd::deletePassword(std::vector<std::vector<std::string>> &vec, bool isGoodPassword) {
     if (!isGoodPassword) std::cerr << "void deletePassword(): Blad! Opcja niedostepna przez niepoprawne haslo do programu" << std::endl;
@@ -51,8 +51,8 @@ void deletePasswd::deletePassword(std::vector<std::vector<std::string>> &vec, bo
 }
 
 /**
- * Deletes password by name
- * @param vec - vector filled with passwords
+ * Delete password by name
+ * @param vec - vector filled with decrypted passwords
  */
 void deletePasswd::singlePassword(std::vector<std::vector<std::string>> &vec){
     bool passwordFounded = false;
@@ -85,8 +85,8 @@ void deletePasswd::singlePassword(std::vector<std::vector<std::string>> &vec){
 }
 
 /**
- * Deletes passwords by parameters
- * @param vec - vector filled with passwords
+ * Delete password by parameters
+ * @param vec - vector filled with decrypted passwords
  */
 void deletePasswd::parametersPassword(std::vector<std::vector<std::string>> &vec){
     std::string listOfColumns[] = {"Haslo", "Nazwa", "Kategoria", "Strona_WWW", "Login"};

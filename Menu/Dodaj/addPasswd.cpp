@@ -23,9 +23,8 @@
 
 /**
  * Add password to vector
- * @param vec - vector filled with passwords
- * @param isGoodPassword - check if user password is correct
- * @param j - container with categories
+ * @param vec - vector filled with decrypted passwords
+ * @param isGoodPassword - true if password is correct, otherwise false
  */
 void addPasswd::addPassword(std::vector<std::vector<std::string>> &vec, bool isGoodPassword) {
     if (!isGoodPassword) std::cerr << "void addPassword(): Blad! Opcja niedostepna przez niepoprawne haslo do programu" << std::endl;
@@ -134,15 +133,15 @@ std::string addPasswd::generatePassword() {
 
 /**
  * Generate random password with custom parameters
- * @param lengthOfPassword - how long will generate password be
- * @param isUpperCase - if password have to contain big letters
- * @param specialLetters - if password have to contain special letters
+ * @param lengthOfPassword - how long password has to be
+ * @param isUpperCase - does password have to contain uppercase letters
+ * @param specialChars - does password have to contain special characters
  * @return generated password
  */
-std::string addPasswd::generatedPasswordToReturn(int lengthOfPassword, bool isUpperCase, bool specialLetters) {
+std::string addPasswd::generatedPasswordToReturn(int lengthOfPassword, bool isUpperCase, bool specialChars) {
     static const char arrOfNumbers[] = "0123456789";
     static const char arrOfSmallLetters[] = "abcdefghijklmnopqrstuwvxyz";
-    static const char arrOfSpecialLetters[] = "!@#$%^&*()";
+    static const char arrOfSpecialChars[] = "!@#$%^&*()";
     static const char arrOfBigLetters[] = "ABCDEFGHIJKLMNOPQRSTUWVXYZ";
     std::string generatedPasswordToReturn;
 
@@ -155,8 +154,8 @@ std::string addPasswd::generatedPasswordToReturn(int lengthOfPassword, bool isUp
                 generatedPasswordToReturn += arrOfSmallLetters[rand() % (sizeof(arrOfSmallLetters) - 1)];
                 break;
             case 3: {
-                if (specialLetters)
-                    generatedPasswordToReturn += arrOfSpecialLetters[rand() % (sizeof(arrOfSpecialLetters) - 1)];
+                if (specialChars)
+                    generatedPasswordToReturn += arrOfSpecialChars[rand() % (sizeof(arrOfSpecialChars) - 1)];
                 else generatedPasswordToReturn += arrOfNumbers[rand() % (sizeof(arrOfNumbers) - 1)];
                 break;
             }
@@ -185,7 +184,7 @@ void addPasswd::showCategories(nlohmann::json j) {
 
 /**
  * Check how strong password is
- * @param passwordToCheck - check if user password is correct
+ * @param passwordToCheck - password to check
  */
 void addPasswd::checkingStrengthOfPassword(const std::string &passwordToCheck) {
 
@@ -204,9 +203,9 @@ void addPasswd::checkingStrengthOfPassword(const std::string &passwordToCheck) {
 }
 
 /**
- * Check unique of name
+ * Check if name is unique
  * @param nameToCheck - name to check
- * @param vec - vector filled with passwords
+ * @param vec - vector filled with decrypted passwords
  * @return true if name is unique otherwise false
  */
 bool addPasswd::checkingUniqueOfName(const std::string &nameToCheck, std::vector<std::vector<std::string>> &vec) {

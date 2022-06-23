@@ -21,8 +21,9 @@
 #include <vector>
 #include "../../Lib/single_include/nlohmann/json.hpp"
 
-struct menu {
-    static void generateMenu(std::vector<std::vector<std::string>> vec, bool isGoodPassword,
+class menu {
+public:
+    static void generateMenu(std::vector<std::vector<std::string>>& vec, bool isGoodPassword,
                              const std::filesystem::path& path);
 };
 
